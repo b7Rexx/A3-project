@@ -6,10 +6,12 @@ Vue.use(VueRouter);
 import LoginComponent from './components/Login/LoginComponent.vue';
 import UserLoginComponent from './components/Login/UserLoginComponent.vue';
 import ShopLoginComponent from './components/Login/ShopLoginComponent';
+import RegisterComponent from './components/Login/RegisterComponent';
 
-Vue.component('LoginComponent', require('./components/Login/LoginComponent.vue'));
-Vue.component('UserLoginComponent', require('./components/Login/UserLoginComponent.vue'));
-Vue.component('ShopLoginComponent', require('./components/Login/ShopLoginComponent.vue'));
+Vue.component('LoginComponent', LoginComponent);
+Vue.component('UserLoginComponent', UserLoginComponent);
+Vue.component('ShopLoginComponent', ShopLoginComponent);
+Vue.component('RegisterComponent', RegisterComponent);
 
 
 const router = new VueRouter({
@@ -17,16 +19,20 @@ const router = new VueRouter({
     base: '/login',
     routes: [
         {
-            path: '/',
+            path: '/home',
             component: LoginComponent,
         },
         {
             path: '/user',
-            component: UserLoginComponent,
+            component: UserLoginComponent
         },
         {
             path: '/shop',
-            component: ShopLoginComponent,
+            component: ShopLoginComponent
+        },
+        {
+            path: '/register',
+            component: RegisterComponent
         }
     ]
 });
@@ -34,5 +40,14 @@ const router = new VueRouter({
 
 const login = new Vue({
     router,
-    el: '#login'
+    el: '#login',
+    method: {
+        radioC: function () {
+            alert('ok');
+            $('label').on('click', function () {
+                this.find('input[type="radio"]').prop('checked', true);
+            });
+        }
+    }
+
 });

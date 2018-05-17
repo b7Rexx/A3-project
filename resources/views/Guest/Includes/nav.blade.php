@@ -26,7 +26,7 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
-            <a href="{{route('login-home')}}" class="btn btn-success" style="position: absolute;right:30px;">SignIn</a>
+            <a href="/login/home" class="btn btn-success" style="position: absolute;right:30px;">SignIn</a>
         </ul>
     </div>
 </nav>

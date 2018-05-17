@@ -21,3 +21,18 @@ Route::group(['prefix' => '@dmin'], function () {
 //Guest routes
 Route::get('/', 'GuestController@home')->name('guest-home');
 Route::get('/login/{type?}', 'GuestController@login')->name('login-home');
+
+
+//shop routes
+Route::group(['prefix' => 'shop'], function () {
+    Route::post('/login', 'GuestController@shopLogin')->name('shop-login');
+});
+
+
+//user routes
+Route::group(['prefix' => 'user'], function () {
+    Route::post('/login', 'GuestController@userLogin')->name('user-login');
+});
+
+
+

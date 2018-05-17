@@ -32,12 +32,13 @@
 }
 
 .guest a:hover {
-    color: #f7631b;
+    color: #c00000;
     text-decoration: none;
+    font-weight: bold;
 }
 
 .carousel-item > img {
-    opacity: 0.8;
+    opacity: 1;
     height: 550px;
 }
 
@@ -54,9 +55,9 @@
     top: 0;
 }
 
-.carousel-overlap-top > img{
+.carousel-overlap-top > img {
     height: 180px;
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 .carousel-overlap-bottom {
@@ -66,8 +67,23 @@
 }
 
 .carousel-overlap-bottom > img {
-    height:250px;
+    height: 250px;
     opacity: 0.8;
-    border-top:4px outset grey;
-    border-left:4px outset grey;
+    border-top: 4px outset grey;
+    border-left: 4px outset grey;
+}
+
+.carousel-overlap-bottom > a {
+    position: absolute;
+    left: 10px;
+    bottom:20px;
+}
+
+.vue-login{
+    max-width:400px;
+    background: #ff8f56;
+    color:#240041;
+    margin:auto;
+    border-radius: 15px;
+    padding: 10px;
 }

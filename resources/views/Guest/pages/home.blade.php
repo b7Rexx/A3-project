@@ -33,8 +33,8 @@
                 <img src="{{URL::to('images/A3logo.png')}}" alt="">
             </div>
             <div class="carousel-overlap-bottom">
-                <img src="{{URL::to('images/guest-cover.jpg')}}" alt="image" style="position: relative">
-                <a href="#" style="position: absolute;left:0;"><h2>Get Access to All the Features <br>with Your own Account</h2></a>
+                <img src="{{URL::to('images/c1.jpg')}}" alt="image" style="position: relative">
+                <a href="/login/home"><h1 class="text-center">Login/Register</h1><h4>Get Access to All the Features <br>with Your own Account</h4></a>
             </div>
         </div>
     </div>
