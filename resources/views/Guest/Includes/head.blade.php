@@ -8,5 +8,5 @@
     <title>@yield('title','A3 - All ABout Aqua')</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{URL::to('images/A3logo.png')}}" />
     <link rel="stylesheet" href="{{URL::to('css/app.css')}}">
-    <link rel="stylesheet" href="{{URL::to('css/homeCustom.css')}}">
+    <link rel="stylesheet" href="{{URL::to('css/guestCustom.css')}}">
 </head>

@@ -10,4 +10,5 @@
     <link rel="stylesheet" href="{{URL::to('css/gentelella/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{URL::to('css/gentelella/nprogress.css')}}">
     <link rel="stylesheet" href="{{URL::to('css/gentelella/custom.min.css')}}">
+    <style>@yield('style-css')</style>
 </head>

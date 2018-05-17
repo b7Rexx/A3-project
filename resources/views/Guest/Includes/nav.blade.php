@@ -1,12 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="{{route('home-index')}}"><img src="{{URL::to('images/a3logo.png')}}" alt="logo"></a>
+<nav class="navbar navbar-expand-lg">
+    <a href="{{route('guest-home')}}"><img height="60px" src="{{URL::to('images/A3logo.png')}}" alt="Logo">
+        <h3 style="display: inline">All About Aqua</h3></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="fa fa-list"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav pl-5">
             <li class="nav-item active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
@@ -14,7 +14,8 @@
                 <a class="nav-link" href="#">Link</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Dropdown
                 </a>
@@ -25,17 +26,7 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
+            <a href="{{route('login-home')}}" class="btn btn-success" style="position: absolute;right:30px;">SignIn</a>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-
-        <a href="{{route('login')}}">
-            <button class="btn btn-success btn-sm ml-2">Login/register</button>
-        </a>
     </div>
 </nav>

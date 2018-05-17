@@ -1,6 +1,12 @@
-
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+//@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Philosopher');
+
+* {
+  //font-family: 'Indie Flower', cursive;
+  //font-family: 'Abril Fatface', cursive;
+  font-family: 'Philosopher', sans-serif;
+}
 
 // Variables
 @import "variables";
@@ -11,8 +17,11 @@
 //Font-Awesome
 @import "~font-awesome/scss/font-awesome";
 
-
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.row{
+  margin:0;
 }

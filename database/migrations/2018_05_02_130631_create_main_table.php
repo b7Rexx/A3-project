@@ -16,7 +16,7 @@ class CreateMainTable extends Migration
         Schema::create('main', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('value');
+            $table->text('value');
             $table->timestamps();
         });
     }

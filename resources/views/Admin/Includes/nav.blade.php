@@ -34,8 +34,9 @@
                     </li>
                     <li><a><i class="fa fa-edit"></i> Main Database <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="{{route('admin-home')}}">Add Main Data</a></li>
                             <li><a href="{{route('admin-view')}}">View Main Data</a></li>
+                            <li><a href="{{route('admin-home')}}">Add Main Data</a></li>
+                            <li><a href="{{route('admin-carousel')}}">Carousel Data</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-desktop"></i> Shop <span

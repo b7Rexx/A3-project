@@ -1,7 +1,7 @@
 <!--Footer-->
 <footer>
     <!--Copyright-->
-    <div class="text-center">
+    <div class="text-center bg-dark">
         © 2018 Copyright:
         <a href="#">{{$mains['admin']}}</a>
     </div>

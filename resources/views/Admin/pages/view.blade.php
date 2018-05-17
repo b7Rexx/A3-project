@@ -4,6 +4,14 @@
     A3 - Admin View
 @endsection
 
+@section('style-css')
+    table{
+    table-layout: fixed;
+    width: 100%;
+    word-wrap:break-word;
+    }
+@endsection
+
 @section('body')
     @include('Admin.Includes.message')
     <table class="table table-striped">

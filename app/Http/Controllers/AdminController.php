@@ -13,12 +13,12 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view($this->_path.'index');
+        return view($this->_path . 'index');
     }
 
     public function home()
     {
-        return view($this->_path.'home');
+        return view($this->_path . 'home');
     }
 
 
@@ -40,7 +40,7 @@ class AdminController extends Controller
     public function view()
     {
         $this->_data['mains'] = Main::all();
-        return view($this->_path.'view', $this->_data);
+        return view($this->_path . 'view', $this->_data);
     }
 
     public function viewDelete(Request $request)
@@ -53,16 +53,32 @@ class AdminController extends Controller
 
     }
 
-
     public function adminview()
     {
         $this->_data['shops'] = Shop::all();
-        return view($this->_path.'shopView',$this->_data);
+        return view($this->_path . 'shopView', $this->_data);
     }
 
+    public function carousel()
+    {
+        return view($this->_path . "carousel");
+    }
 
-
-
+    public function carouselAction(Request $request)
+    {
+        if ($request->hasFile('carousel')) {
+            $files = $request->file('carousel');
+            foreach ($files as $key => $file) {
+                $extension = strtolower($file->extension());
+                $newName = str_random(10) . '_' . time() . "." . $extension;
+                $file->move(public_path('images/carousel/'), $newName);
+                $data[$key] = $newName;
+            }
+            if (Main::create(['name' => 'carousel', 'value' => serialize($data)]))
+                return redirect()->route('admin-view')->with('success', 'Image uploaded successfully');
+        }
+        return redirect()->route('admin-carousel')->with('fail', 'Fail Image upload');
+    }
 
     public function test()
     {
