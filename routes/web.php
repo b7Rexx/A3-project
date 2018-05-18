@@ -35,4 +35,7 @@ Route::group(['prefix' => 'user'], function () {
 });
 
 
-
+//VUE API ROUTES
+Route::group(['prefix' => 'api'], function () {
+    Route::post('register', 'ApiController@registerFirst');
+});

@@ -40,14 +40,5 @@ const router = new VueRouter({
 
 const login = new Vue({
     router,
-    el: '#login',
-    method: {
-        radioC: function () {
-            alert('ok');
-            $('label').on('click', function () {
-                this.find('input[type="radio"]').prop('checked', true);
-            });
-        }
-    }
-
+    el: '#login'
 });

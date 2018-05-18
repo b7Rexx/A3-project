@@ -5,7 +5,7 @@
 @endsection
 
 @section('body')
-    <div id="login" class="login bg-primary" style="min-height:80vh;">
+    <div class="login bg-primary" style="min-height:80vh;">
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h1 class="text-center">A3</h1>
@@ -15,7 +15,7 @@
                 Iusto, quos?
                 <hr>
 
-                <div class="vue-login">
+                <div class="vue-login" id="login">
                     <router-view></router-view>
                 </div>
             </div>

@@ -15,16 +15,16 @@
 </template>
 
 <script>
-    export default {
-        data() {
-        }
-    }
+    export default {}
 </script>
 
 <style>
-
     h3 {
         display: inline;
         padding-left: 20px;
+    }
+
+    .animate {
+        transition: opacity .5s;
     }
 </style>

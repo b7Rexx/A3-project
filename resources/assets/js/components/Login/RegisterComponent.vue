@@ -1,33 +1,52 @@
 <template>
     <div>
         <h3>REGISTER</h3>
-        <form action="">
-            <label v-on:click="radioC"><h5>User </h5><i class="fa fa-user fa-2x pr-2"></i></label><input
-                type="radio" name="type" checked>
-            <label v-on:click="radioC"><h5>Shop </h5><i class="fa fa-shopping-cart fa-2x pr-2"></i></label><input
-                type="radio"
-                name="type"><br>
+        <form v-on:submit.prevent="registerFirst()" data-aos="fade-left" data-aos-delay="1500">
+            <label><h5>User </h5><i class="fa fa-user fa-2x pr-2"></i></label>
+            <input type="radio" v-model="regData.type" value="user" checked>
+            <label><h5>Shop </h5><i class="fa fa-shopping-cart fa-2x pr-2"></i></label>
+            <input type="radio" v-model="regData.type" value="shop"><br>
             <label><i class="fa fa-edit"></i>Name : </label>
-            <input type="text" name="name" class="form-control">
+            <input type="text" v-model="regData.name" class="form-control">
             <label><i class="fa fa-envelope"></i>Email : </label>
-            <input type="email" name="email" class="form-control">
+            <input type="email" v-model="regData.email" class="form-control">
             <label><i class="fa fa-key"></i> Password : </label>
-            <input type="password" name="pass" class="form-control">
+            <input type="password" v-model="regData.password" class="form-control">
             <label><i class="fa fa-key"></i> Confirm password : </label>
-            <input type="password" name="c_pass" class="form-control"><br>
-
+            <input type="password" v-model="regData.password_confirmation" class="form-control"><br>
             <input type="submit" class="btn btn-success btn-lg" value="Submit">
+
+            <router-link to="/home" class="btn btn-secondary float-right">Back</router-link>
         </form>
     </div>
 </template>
 
 <script>
     export default {
-        method() {
+        data() {
             return {
-                radioC: function () {
-                    alert('ok');
-                }
+                regData: {
+                    name: '',
+                    email: '',
+                    password: '',
+                    password_confirmation: '',
+                    type: 'user',
+                    token: server._token
+                },
+                message: ''
+            }
+        },
+        methods: {
+            registerFirst() {
+                axios.post(server._url + '/api/register', this.regData).then((response) => {
+                    if (response.data.status === true) {
+                        alert('regiter success');
+                        console.log(response);
+                    } else {
+                        console.log(response);
+                        alert('failed');
+                    }
+                });
             }
         }
     }
@@ -42,9 +61,9 @@
         display: inline;
     }
 
-    input[type="radio"]:checked {
-        visibility: hidden;
-    }
+    /*input[type="radio"]:checked {*/
+    /*visibility: hidden;*/
+    /*}*/
 
 
 </style>
