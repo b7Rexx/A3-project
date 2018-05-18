@@ -32,16 +32,16 @@
                     password_confirmation: '',
                     type: 'user',
                     token: server._token
-                },
-                message: ''
+                }
             }
         },
         methods: {
             registerFirst() {
                 axios.post(server._url + '/api/register', this.regData).then((response) => {
-                    if (response.data.status === true) {
-                        alert('regiter success');
-                        console.log(response);
+                    let last_insert_id = response.data.last_insert_id;
+                    let status = response.data.status;
+                    if (status === true) {
+                        window.location.replace(server._url + '/login/registerSecond/'+last_insert_id);
                     } else {
                         console.log(response);
                         alert('failed');

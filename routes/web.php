@@ -20,7 +20,7 @@ Route::group(['prefix' => '@dmin'], function () {
 
 //Guest routes
 Route::get('/', 'GuestController@home')->name('guest-home');
-Route::get('/login/{type?}', 'GuestController@login')->name('login-home');
+Route::get('/login/{type?}/{id?}', 'GuestController@login')->name('login-home');
 
 
 //shop routes
@@ -38,4 +38,5 @@ Route::group(['prefix' => 'user'], function () {
 //VUE API ROUTES
 Route::group(['prefix' => 'api'], function () {
     Route::post('register', 'ApiController@registerFirst');
+    Route::post('registerSecond', 'ApiController@registerSecond');
 });

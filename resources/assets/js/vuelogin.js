@@ -7,11 +7,13 @@ import LoginComponent from './components/Login/LoginComponent.vue';
 import UserLoginComponent from './components/Login/UserLoginComponent.vue';
 import ShopLoginComponent from './components/Login/ShopLoginComponent';
 import RegisterComponent from './components/Login/RegisterComponent';
+import RegisterSecondComponent from './components/Login/RegisterSecondComponent';
 
 Vue.component('LoginComponent', LoginComponent);
 Vue.component('UserLoginComponent', UserLoginComponent);
 Vue.component('ShopLoginComponent', ShopLoginComponent);
 Vue.component('RegisterComponent', RegisterComponent);
+Vue.component('RegisterSecondComponent', RegisterSecondComponent);
 
 
 const router = new VueRouter({
@@ -33,7 +35,12 @@ const router = new VueRouter({
         {
             path: '/register',
             component: RegisterComponent
+        },
+        {
+            path: '/registerSecond/:id',
+            component: RegisterSecondComponent
         }
+
     ]
 });
 

@@ -21,6 +21,7 @@ class CreateShopsTable extends Migration
             $table->text('address')->nullable();
             $table->integer('phone')->nullable();
             $table->text('bio')->nullable();
+            $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

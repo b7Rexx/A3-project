@@ -21,13 +21,29 @@ class ApiController extends Controller
         $data['password'] = bcrypt($request->password);
         if ($request->type === 'user') {
             if ($id = User::create($data)->id) {
-                return response()->json(['status' => true, 'last_insert_id' => $id]);
+                return response()->json(['status' => true, 'last_insert_id' => 'U=' . $id]);
             }
         } elseif ($request->type === 'shop') {
             if ($id = Shop::create($data)->id) {
-                return response()->json(['status' => true, 'last_insert_id' => $id]);
+                return response()->json(['status' => true, 'last_insert_id' => 'S=' . $id]);
             }
         }
         return response()->json(['status' => false]);
+    }
+
+
+    public function registerSecond(Request $request)
+    {
+        $data['address'] = $request->address;
+        $data['phone'] = $request->phone;
+        $data['bio'] = $request->bio;
+        if ($request->id[0] === 'U') {
+            $id = trim($request->id, 'U=');
+            User::where('id', '=', $id)->update($data);
+        } elseif ($request->id[0] === 'S') {
+            $id = trim($request->id, 'S=');
+            Shop::where('id', '=', $id)->update($data);
+        }
+        return response()->json(['status' => true]);
     }
 }
