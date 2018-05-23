@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Main;
+use App\Shop;
 use Illuminate\Http\Request;
 
 class GuestController extends Controller
@@ -18,10 +19,13 @@ class GuestController extends Controller
             $array[$list['name']] = $list['value'];
         }
         $this->_data['mains'] = $array;
+
+
     }
 
     public function home()
     {
+        $this->_data['shops'] = Shop::all()->take(5);
         return view($this->_path . 'home', $this->_data);
     }
 
@@ -41,4 +45,10 @@ class GuestController extends Controller
         $this->_data['post'] = $request->all();
         return view($this->_path . 'login/user', $this->_data)->with('fail', 'Invalid login information');
     }
+
+    public function test()
+    {
+        return view($this->_path . 'test', $this->_data);
+    }
+
 }

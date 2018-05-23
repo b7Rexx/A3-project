@@ -1,10 +1,10 @@
 <template>
     <div>
         <h3>REGISTER</h3>
-        <form v-on:submit.prevent="registerFirst()" data-aos="fade-left" data-aos-delay="1500">
-            <label><h5>User </h5><i class="fa fa-user fa-2x pr-2"></i></label>
-            <input type="radio" v-model="regData.type" value="user" checked>
-            <label><h5>Shop </h5><i class="fa fa-shopping-cart fa-2x pr-2"></i></label>
+        <form v-on:submit.prevent="registerFirst()">
+            <label v-on:click="checkUser()"><h5>User </h5><i class="fa fa-user fa-2x pr-2"></i></label>
+            <input type="radio" v-model="regData.type" value="user">
+            <label v-on:click="checkShop()"><h5>Shop </h5><i class="fa fa-shopping-cart fa-2x pr-2"></i></label>
             <input type="radio" v-model="regData.type" value="shop"><br>
             <label><i class="fa fa-edit"></i>Name : </label>
             <input type="text" v-model="regData.name" class="form-control">
@@ -47,6 +47,12 @@
                         alert('failed');
                     }
                 });
+            },
+            checkUser(){
+                this.regData.type = 'user';
+            },
+            checkShop(){
+                this.regData.type = 'shop';
             }
         }
     }

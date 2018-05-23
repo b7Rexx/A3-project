@@ -22,10 +22,13 @@ Route::group(['prefix' => '@dmin'], function () {
 Route::get('/', 'GuestController@home')->name('guest-home');
 Route::get('/login/{type?}/{id?}', 'GuestController@login')->name('login-home');
 
+Route::get('/test', 'GuestController@test');
 
 //shop routes
 Route::group(['prefix' => 'shop'], function () {
     Route::post('/login', 'GuestController@shopLogin')->name('shop-login');
+    Route::get('/list', 'ShopController@list')->name('shop-list');
+    Route::get('/{id}', 'ShopController@shopView');
 });
 
 
@@ -39,4 +42,7 @@ Route::group(['prefix' => 'user'], function () {
 Route::group(['prefix' => 'api'], function () {
     Route::post('register', 'ApiController@registerFirst');
     Route::post('registerSecond', 'ApiController@registerSecond');
+    Route::get('register/{id}', 'ApiController@registerProfile');
+
+    Route::post('/profile-pic', 'ApiController@addPic')->name('add-profile-pic');
 });

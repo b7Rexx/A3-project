@@ -33,9 +33,29 @@
                 <img src="{{URL::to('images/A3logo.png')}}" alt="">
             </div>
             <div class="carousel-overlap-bottom">
-                <img src="{{URL::to('images/c1.jpg')}}" alt="image" style="position: relative">
-                <a href="/login/home"><h1 class="text-center">Login/Register</h1><h4>Get Access to All the Features <br>with Your own Account</h4></a>
+                <img src="{{URL::to('images/c2.jpg')}}" alt="image" style="position: relative">
+                <a href="/login/home"><h1 class="text-center">Login/Register</h1><h4>Get Access to All the Features <br>with
+                        Your own Account</h4></a>
             </div>
+        </div>
+
+        <div class="list bg-primary">
+            @forelse($shops as $detail)
+                <div class="row">
+                    <div class="col-sm-5 col-md-3">
+                        <img src="{{URL::to('images/uploads/shops/'.$detail->image)}}" alt="No image">
+                    </div>
+                    <div class="col-sm-7 col-md-6">
+                        <a href="/shop/{{$detail->id}}"><h3>{{$detail->name}}</h3>
+                            <p>{{$detail->email}}<br>{{$detail->address}}<br>{{$detail->phone}}</p></a>
+                    </div>
+                    <div class="col-md-3">
+                        <p>{{$detail->bio}}</p>
+                    </div>
+                </div>
+            @empty
+                <h3>No shop available.</h3>
+            @endforelse
         </div>
     </div>
 @endsection

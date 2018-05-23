@@ -33,7 +33,7 @@
         methods: {
             registerSecond() {
                 axios.post(server._url + '/api/registerSecond', this.regData).then((response) => {
-                    window.location.replace(this.link);
+                    window.location.replace(this.link + '/api/register/' + response.data.type + '=' + response.data.id);
                 });
             },
             goHome() {

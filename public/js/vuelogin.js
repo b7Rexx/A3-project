@@ -15406,6 +15406,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     alert('failed');
                 }
             });
+        },
+        checkUser: function checkUser() {
+            this.regData.type = 'user';
+        },
+        checkShop: function checkShop() {
+            this.regData.type = 'shop';
         }
     }
 });
@@ -15424,7 +15430,6 @@ var render = function() {
     _c(
       "form",
       {
-        attrs: { "data-aos": "fade-left", "data-aos-delay": "1500" },
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -15433,7 +15438,20 @@ var render = function() {
         }
       },
       [
-        _vm._m(0),
+        _c(
+          "label",
+          {
+            on: {
+              click: function($event) {
+                _vm.checkUser()
+              }
+            }
+          },
+          [
+            _c("h5", [_vm._v("User ")]),
+            _c("i", { staticClass: "fa fa-user fa-2x pr-2" })
+          ]
+        ),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -15444,7 +15462,7 @@ var render = function() {
               expression: "regData.type"
             }
           ],
-          attrs: { type: "radio", value: "user", checked: "" },
+          attrs: { type: "radio", value: "user" },
           domProps: { checked: _vm._q(_vm.regData.type, "user") },
           on: {
             change: function($event) {
@@ -15453,7 +15471,20 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _vm._m(1),
+        _c(
+          "label",
+          {
+            on: {
+              click: function($event) {
+                _vm.checkShop()
+              }
+            }
+          },
+          [
+            _c("h5", [_vm._v("Shop ")]),
+            _c("i", { staticClass: "fa fa-shopping-cart fa-2x pr-2" })
+          ]
+        ),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -15474,7 +15505,7 @@ var render = function() {
         }),
         _c("br"),
         _vm._v(" "),
-        _vm._m(2),
+        _vm._m(0),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -15498,7 +15529,7 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _vm._m(3),
+        _vm._m(1),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -15522,7 +15553,7 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _vm._m(4),
+        _vm._m(2),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -15546,7 +15577,7 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _vm._m(5),
+        _vm._m(3),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -15594,24 +15625,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", [
-      _c("h5", [_vm._v("User ")]),
-      _c("i", { staticClass: "fa fa-user fa-2x pr-2" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", [
-      _c("h5", [_vm._v("Shop ")]),
-      _c("i", { staticClass: "fa fa-shopping-cart fa-2x pr-2" })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -15793,7 +15806,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.post(server._url + '/api/registerSecond', this.regData).then(function (response) {
-                window.location.replace(_this.link);
+                window.location.replace(_this.link + '/api/register/' + response.data.type + '=' + response.data.id);
             });
         },
         goHome: function goHome() {
