@@ -1,11 +1,9 @@
 // Fonts
-//@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-@import url('https://fonts.googleapis.com/css?family=Philosopher');
+@import url('https://fonts.googleapis.com/css?family=Righteous');
 
 * {
-  //font-family: 'Indie Flower', cursive;
-  //font-family: 'Abril Fatface', cursive;
-  font-family: 'Philosopher', sans-serif;
+  font-family: 'Righteous', cursive;
+  font-size: 14px;
 }
 
 // Variables
@@ -17,11 +15,33 @@
 //Font-Awesome
 @import "~font-awesome/scss/font-awesome";
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+//animate on scroll
+@import "~aos/dist/aos.css";
+
+//Custom css
+*:not(i) {
+  color: black;
 }
 
-.row{
-  margin:0;
+.row {
+  margin: 0;
+  padding: 0;
 }
+
+.back-cover {
+  background-image: url("../../../public/images/back-cover.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+a {
+  color: #480032;
+}
+
+a:hover {
+  color: #f62a66;
+  text-decoration: none;
+}
+
+

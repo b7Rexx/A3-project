@@ -28,8 +28,6 @@
                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="index.html">Dashboard</a></li>
-                            <li><a href="index2.html">Dashboard2</a></li>
-                            <li><a href="index3.html">Dashboard3</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-edit"></i> Main Database <span class="fa fa-chevron-down"></span></a>
@@ -39,34 +37,25 @@
                             <li><a href="{{route('admin-carousel')}}">Carousel Data</a></li>
                         </ul>
                     </li>
-                    <li><a><i class="fa fa-desktop"></i> Shop <span
-                                    class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-desktop"></i> Shop <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{route('admin-shop-view')}}">Shop list</a></li>
-                            <li><a href="media_gallery.html">Media Gallery</a></li>
-                            <li><a href="typography.html">Typography</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="tables.html">Tables</a></li>
-                            <li><a href="tables_dynamic.html">Table Dynamic</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span
                                     class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="chartjs.html">Chart JS</a></li>
-                            <li><a href="chartjs2.html">Chart JS2</a></li>
-                            <li><a href="morisjs.html">Moris JS</a></li>
-                            <li><a href="echarts.html">ECharts</a></li>
-                            <li><a href="other_charts.html">Other Charts</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
-                            <li><a href="fixed_footer.html">Fixed Footer</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -78,20 +67,11 @@
                                     class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="e_commerce.html">E-commerce</a></li>
-                            <li><a href="projects.html">Projects</a></li>
-                            <li><a href="project_detail.html">Project Detail</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="profile.html">Profile</a></li>
-                        </ul>
+                         </ul>
                     </li>
                     <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="page_403.html">403 Error</a></li>
-                            <li><a href="page_404.html">404 Error</a></li>
-                            <li><a href="page_500.html">500 Error</a></li>
-                            <li><a href="plain_page.html">Plain Page</a></li>
-                            <li><a href="login.html">Login Page</a></li>
-                            <li><a href="pricing_tables.html">Pricing Tables</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span
@@ -112,8 +92,6 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span
-                                    class="label label-success pull-right">Coming Soon</span></a></li>
                 </ul>
             </div>
 

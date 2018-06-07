@@ -9,7 +9,7 @@
 
 @section('body')
     <div class="col-md-6">
-        @include('Guest.Includes.message')
+        @include('Admin.Includes.message')
         <form action="{{route('carousel-action')}}" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             <Label> Carousel : </Label><input type="file" class="form-control" name="carousel[]" multiple><br>
@@ -17,4 +17,3 @@
         </form>
     </div>
 @endsection
-

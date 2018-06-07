@@ -1,7 +1,5 @@
 {
-    "/js/vuelogin.js": "/js/vuelogin.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/gentelella.css": "/css/gentelella.css",
-    "/js/vuecomponent.js": "/js/vuecomponent.js"
+    "/css/gentelella.css": "/css/gentelella.css"
 }

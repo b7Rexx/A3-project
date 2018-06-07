@@ -1,0 +1,45 @@
+header {
+    background: whitesmoke;
+    border-bottom: 1px solid honeydew;
+}
+
+.navbar {
+    background: whitesmoke;
+}
+
+@media (min-width: 538px) {
+    header {
+        background: linear-gradient(to right, transparent, white, transparent, transparent, transparent, white);
+    }
+
+    .navbar {
+        background: linear-gradient(to right, transparent, white, transparent, transparent, transparent, white);
+    }
+}
+
+.navbar * {
+    font-size: 16px;
+}
+
+footer {
+    background: linear-gradient(to right, transparent, transparent, white, white, white, transparent, transparent);
+}
+
+.footer-links{
+    background: whitesmoke;
+}
+
+.bg-content {
+    background: white;
+    /*background: linear-gradient(to right, transparent, white, white, white, white, white, white, white, transparent);*/
+}
+
+.carousel img {
+    width: 100%;
+    height: auto;
+}
+
+.carousel-indicators > li {
+    width: 100%;
+    height: 10px;
+}
