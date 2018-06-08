@@ -3,8 +3,9 @@ header {
     border-bottom: 1px solid honeydew;
 }
 
-.navbar {
+.bg-nav {
     background: whitesmoke;
+    z-index: 20;
 }
 
 @media (min-width: 538px) {
@@ -12,7 +13,7 @@ header {
         background: linear-gradient(to right, transparent, white, transparent, transparent, transparent, white);
     }
 
-    .navbar {
+    .bg-nav {
         background: linear-gradient(to right, transparent, white, transparent, transparent, transparent, white);
     }
 }
@@ -25,12 +26,14 @@ footer {
     background: linear-gradient(to right, transparent, transparent, white, white, white, transparent, transparent);
 }
 
-.footer-links{
+.footer-links {
     background: whitesmoke;
+    border-bottom-right-radius: 110px;
 }
 
 .bg-content {
-    background: white;
+    /*background: deepskyblue;*/
+    background-color: rgba(255, 255, 255, 0.8);
     /*background: linear-gradient(to right, transparent, white, white, white, white, white, white, white, transparent);*/
 }
 
@@ -42,4 +45,16 @@ footer {
 .carousel-indicators > li {
     width: 100%;
     height: 10px;
+}
+
+.profile-image > img {
+    min-height: 280px;
+    width: 100%;
+}
+
+.profile-image-form {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 30%;
 }

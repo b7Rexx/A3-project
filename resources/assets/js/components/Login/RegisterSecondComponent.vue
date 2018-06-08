@@ -24,7 +24,6 @@
                     address: '',
                     phone: '',
                     bio: '',
-                    image: '',
                     token: server._token
                 },
                 link: server._url
@@ -32,8 +31,8 @@
         },
         methods: {
             registerSecond() {
-                axios.post(server._url + '/api/registerSecond', this.regData).then((response) => {
-                    window.location.replace(this.link + '/api/register/' + response.data.type + '=' + response.data.id);
+                axios.post(server._url + '/signup/registerSecond', this.regData).then((response) => {
+                    window.location.replace(this.link + '/shop/id/' + response.data.id);
                 });
             },
             goHome() {

@@ -1,23 +1,23 @@
 <template>
     <div>
-        <h3>REGISTER</h3>
-        <form v-on:submit.prevent="registerFirst()">
-            <label v-on:click="checkUser()"><h5>User </h5><i class="fa fa-user fa-2x pr-2"></i></label>
-            <input type="radio" v-model="regData.type" value="user">
-            <label v-on:click="checkShop()"><h5>Shop </h5><i class="fa fa-shopping-cart fa-2x pr-2"></i></label>
-            <input type="radio" v-model="regData.type" value="shop"><br>
-            <label><i class="fa fa-edit"></i>Name : </label>
-            <input type="text" v-model="regData.name" class="form-control">
-            <label><i class="fa fa-envelope"></i>Email : </label>
-            <input type="email" v-model="regData.email" class="form-control">
-            <label><i class="fa fa-key"></i> Password : </label>
-            <input type="password" v-model="regData.password" class="form-control">
-            <label><i class="fa fa-key"></i> Confirm password : </label>
-            <input type="password" v-model="regData.password_confirmation" class="form-control"><br>
-            <input type="submit" class="btn btn-success btn-lg" value="Submit">
-
-            <router-link to="/home" class="btn btn-secondary float-right">Back</router-link>
-        </form>
+        <div class="text-center p-3">
+            <h1><i class="fa fa-shopping-cart"></i> Register</h1>
+        </div>
+        <div class="p-5">
+            <form v-on:submit.prevent="registerFirst()">
+                <label><i class="fa fa-edit"></i> Name : </label>
+                <input type="text" v-model="regData.name" class="form-control" required>
+                <label><i class="fa fa-envelope"></i> Email : </label>
+                <input type="email" v-model="regData.email" class="form-control" required>
+                <label><i class="fa fa-key"></i> Password : </label>
+                <input type="password" v-model="regData.password" class="form-control" required>
+                <label><i class="fa fa-key"></i> Confirm password : </label>
+                <input type="password" v-model="regData.password_confirmation" class="form-control" required><br>
+                <input type="submit" class="btn btn-success btn-lg" value="Submit">
+                <br><br>
+                <router-link to="/" class="btn btn-secondary float-right">Back</router-link>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -30,29 +30,22 @@
                     email: '',
                     password: '',
                     password_confirmation: '',
-                    type: 'user',
                     token: server._token
                 }
             }
         },
         methods: {
             registerFirst() {
-                axios.post(server._url + '/api/register', this.regData).then((response) => {
+                axios.post(server._url + '/signup/register', this.regData).then((response) => {
                     let last_insert_id = response.data.last_insert_id;
                     let status = response.data.status;
                     if (status === true) {
-                        window.location.replace(server._url + '/login/registerSecond/'+last_insert_id);
+                        window.location.replace(server._url + '/signup/register/' + last_insert_id);
                     } else {
                         console.log(response);
                         alert('failed');
                     }
                 });
-            },
-            checkUser(){
-                this.regData.type = 'user';
-            },
-            checkShop(){
-                this.regData.type = 'shop';
             }
         }
     }

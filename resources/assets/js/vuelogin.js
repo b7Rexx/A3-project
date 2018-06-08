@@ -3,49 +3,35 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
-import LoginComponent from './components/Login/LoginComponent.vue';
-import UserLoginComponent from './components/Login/UserLoginComponent.vue';
-import ShopLoginComponent from './components/Login/ShopLoginComponent';
-import RegisterComponent from './components/Login/RegisterComponent';
-import RegisterSecondComponent from './components/Login/RegisterSecondComponent';
+import ShopComponent from './components/Login/ShopComponent.vue';
+import RegisterComponent from './components/Login/RegisterComponent.vue';
+import RegisterSecondComponent from './components/Login/RegisterSecondComponent.vue';
 
-Vue.component('LoginComponent', LoginComponent);
-Vue.component('UserLoginComponent', UserLoginComponent);
-Vue.component('ShopLoginComponent', ShopLoginComponent);
+Vue.component('ShopComponent', ShopComponent);
 Vue.component('RegisterComponent', RegisterComponent);
 Vue.component('RegisterSecondComponent', RegisterSecondComponent);
 
-
 const router = new VueRouter({
     mode: 'history',
-    base: '/login',
+    base: '/signup',
     routes: [
         {
-            path: '/home',
-            component: LoginComponent,
-        },
-        {
-            path: '/user',
-            component: UserLoginComponent
-        },
-        {
-            path: '/shop',
-            component: ShopLoginComponent
+            path: '/',
+            component: ShopComponent,
         },
         {
             path: '/register',
-            component: RegisterComponent
+            component: RegisterComponent,
         },
         {
-            path: '/registerSecond/:id',
-            component: RegisterSecondComponent
-        }
-
+            path: '/register/:id',
+            component: RegisterSecondComponent,
+        },
     ]
 });
 
 
-const login = new Vue({
+const signup = new Vue({
     router,
-    el: '#login'
+    el: '#signup'
 });

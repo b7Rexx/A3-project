@@ -9,6 +9,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{URL::to('images/A3logo.png')}}"/>
     <link rel="stylesheet" href="{{URL::to('css/app.css')}}">
     <link rel="stylesheet" href="{{URL::to('home/custom.css')}}">
+    @yield('css')
 </head>
 
 <body class="back-cover">

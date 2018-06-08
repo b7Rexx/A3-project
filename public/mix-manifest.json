@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/gentelella.css": "/css/gentelella.css"
+    "/css/gentelella.css": "/css/gentelella.css",
+    "/js/vuelogin.js": "/js/vuelogin.js"
 }

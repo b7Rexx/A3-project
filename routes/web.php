@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 
 //Backend routes
@@ -18,4 +19,18 @@ Route::group(['prefix' => '@dmin'], function () {
 });
 
 //Frontend home routes
-Route::get('/','HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/signup/{route?}/{id?}', 'HomeController@signup')->name('signup');
+Route::post('/signup/register', 'HomeController@register');
+Route::post('/signup/registerSecond', 'HomeController@registerSecond');
+
+
+//Shop routes
+
+Route::group(['prefix' => 'shop'], function () {
+    Route::get('/id/{id}', 'ShopController@profile')->where(['id' => '[0-9]+']);
+    Route::get('/', 'ShopController@LoggedProfile')->name('shop-profile');
+    Route::get('/items', 'ShopController@shopItems')->name('shop-items');
+    Route::post('/id/image', 'ShopController@profileImageUpload')->name('shop-profile-image-upload');
+});
+

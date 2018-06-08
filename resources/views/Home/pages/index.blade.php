@@ -13,43 +13,14 @@
             <br><br>
         </div>
         <div class="row">
-            <div class="col-md-8" data-aos="fade-right">
-                <div id="demo" class="carousel slide" data-ride="carousel">
-
-                    <!-- Indicators -->
-                    <ul class="carousel-indicators">
-                        <li data-target="#demo" data-slide-to="0" class="active"></li>
-                        <li data-target="#demo" data-slide-to="1"></li>
-                        <li data-target="#demo" data-slide-to="2"></li>
-                    </ul>
-
-                    <!-- The slideshow -->
-                    <div class="carousel-inner">
-                        @forelse(unserialize($mains['carousel']) as $key=>$image)
-                            <div class="carousel-item {{$key == 0?'active':''}}">
-                                <img src="{{URL::to('images/carousel/'.$image)}}" alt="Los Angeles">
-                            </div>
-                        @empty
-                            <div class="carousel-item active">
-                                <img src="{{URL::to('images/A3.jpg')}}">
-                            </div>
-                        @endforelse
-                    </div>
-                    <!-- Left and right controls -->
-                    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </a>
-                    <a class="carousel-control-next" href="#demo" data-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </a>
-
-                </div>
+            <div class="col-lg-7" data-aos="fade-right">
+                @include('Home.Includes.carousel')
             </div>
-            <div class="col-md-4 text-center" data-aos="fade-down">
+            <div class="col-lg-5 text-center" data-aos="fade-down">
                 <hr>
                 <h4>Sign in for more features</h4>
                 <hr>
-                <a href=""><img src="{{URL::to('images/login-image.jpg')}}" alt="Login"></a>
+                <a href="{{route('signup')}}"><img src="{{URL::to('images/login-image.jpg')}}" alt="Login"></a>
 
             </div>
         </div>
