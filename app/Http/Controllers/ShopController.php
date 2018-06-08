@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
 use App\Main;
 use App\Shop;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class ShopController extends Controller
         $this->_data['mains'] = $array;
 
         //Set shop id after login
-        $this->_data['shop_id'] = 26;
+        $this->_data['shop_id'] = 2;
 
 
     }
@@ -66,5 +67,19 @@ class ShopController extends Controller
             };
         };
         return redirect()->back()->with(['fail' => 'Failed to upload image']);
+    }
+
+    public function addItem(Request $request)
+    {
+        $data['name'] = $request->name;
+        $data['price'] = $request->price;
+        $data['status'] = $request->status;
+        $data['category_id'] = $request->category;
+        $data['shop_id'] = $request->shop_id;
+
+        if (Item::create($data)) {
+            return response(['status' => true]);
+        }
+        return response(['status' => false]);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Category;
 use Illuminate\Support\Facades\Route;
 
 //Backend routes
@@ -30,7 +31,14 @@ Route::post('/signup/registerSecond', 'HomeController@registerSecond');
 Route::group(['prefix' => 'shop'], function () {
     Route::get('/id/{id}', 'ShopController@profile')->where(['id' => '[0-9]+']);
     Route::get('/', 'ShopController@LoggedProfile')->name('shop-profile');
-    Route::get('/items', 'ShopController@shopItems')->name('shop-items');
+    Route::get('/items/{route?}', 'ShopController@shopItems')->name('shop-items');
     Route::post('/id/image', 'ShopController@profileImageUpload')->name('shop-profile-image-upload');
+    Route::post('items/addItem','ShopController@addItem');
+
 });
 
+
+//api
+Route::get('api/categoryList', function () {
+    return response(Category::all());
+});

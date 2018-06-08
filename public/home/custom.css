@@ -48,6 +48,7 @@ footer {
 }
 
 .profile-image > img {
+    max-width:240px;
     min-height: 280px;
     width: 100%;
 }
