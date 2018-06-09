@@ -14814,6 +14814,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -14821,6 +14829,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             itemData: {
                 name: '',
                 category: '',
+                // image:'',
                 price: '0',
                 status: 'on',
                 shop_id: server._shopid,
@@ -14835,7 +14844,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addItem: function addItem() {
             var _this = this;
 
-            axios.post(server._url + '/shop/items/addItem', this.itemData).then(function (response) {
+            axios.post(server._url + '/shop/item/addItem', this.itemData).then(function (response) {
                 var status = response.data.status;
                 if (status === true) {
                     // window.location.replace(server._url + '/shop/items/');
@@ -14850,6 +14859,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             });
         },
+
+        // formImage() {
+        //     console.log('ok');
+        //     let image = $('#image');
+        //     console.log(image.files);
+        //     console.log(image.files[0]);
+        //     this.itemData.image = image.files;
+        // },
         getCat: function getCat() {
             var _this2 = this;
 
@@ -14884,7 +14901,7 @@ var render = function() {
       _vm.addStatus
         ? _c("div", { staticClass: "alert alert-success" }, [
             _c("i", { staticClass: "fa fa-check-circle" }),
-            _vm._v(" Item added successfully!")
+            _vm._v(" Item added\n            successfully!\n        ")
           ])
         : _vm._e()
     ]),
@@ -15188,7 +15205,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.item {\n    position: relative;\n    background: white;\n    padding: 15px;\n    border-right: 1px solid lightgrey;\n}\n.item > img {\n    max-width: 120px;\n    max-height: 120px;\n    border-radius: 60px;\n}\n.item > a {\n    position: absolute;\n    bottom: 10px;\n    right: 10px;\n    font-size:18px;\n    color:green;\n}\n", ""]);
 
 // exports
 
@@ -15210,11 +15227,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            itemList: ''
+            itemList: '',
+            imagelink: server._url + '/images/shop/item/'
         };
     },
 
@@ -15247,21 +15269,31 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("h1", [_vm._v("ok")]),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
+  return _c("div", [
+    _c("h1", [_vm._v("ok")]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "row" },
       _vm._l(_vm.itemList, function(item) {
-        return _c("div", { staticClass: "border bg-white p-1" }, [
-          _c("h3", [_vm._v(_vm._s(item.name))])
-        ])
+        return _c(
+          "div",
+          { staticClass: "col-sm-5 col-md-4 item text-center" },
+          [
+            _c("h5", [_vm._v(_vm._s(item.name))]),
+            _vm._v(" "),
+            _c("img", {
+              attrs: { src: _vm.imagelink + item.image, alt: "Image" }
+            }),
+            _vm._v(" "),
+            _c("a", [_vm._v("Rs. " + _vm._s(item.price))])
+          ]
+        )
       })
-    ],
-    2
-  )
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

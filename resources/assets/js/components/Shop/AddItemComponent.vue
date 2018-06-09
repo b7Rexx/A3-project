@@ -2,12 +2,20 @@
     <div>
         <div class="text-center p-3">
             <h1><i class="fa fa-clone"></i> Add Item</h1>
-            <div class="alert alert-success" v-if="addStatus"><i class="fa fa-check-circle"></i> Item added successfully!</div>
+            <div class="alert alert-success" v-if="addStatus"><i class="fa fa-check-circle"></i> Item added
+                successfully!
+            </div>
         </div>
         <div class="pl-5 pr-5">
             <form v-on:submit.prevent="addItem()">
                 <label><i class="fa fa-edit"></i> Name : </label>
                 <input type="text" v-model="itemData.name" class="form-control" required>
+
+
+                <!--<label><i class="fa fa-image"></i> Image : </label>-->
+                <!--<input type="file" name="image" id="image" @change="formImage()">-->
+                <!--<input type="file" @change="formImage()" name="image" id="image" accept="image/*">-->
+
                 <label><i class="fa fa-th"></i> Category : </label>
                 <select v-model="itemData.category" class="form-control" required>
                     <option> -- Select a Category--</option>
@@ -33,6 +41,7 @@
                 itemData: {
                     name: '',
                     category: '',
+                    // image:'',
                     price: '0',
                     status: 'on',
                     shop_id: server._shopid,
@@ -44,7 +53,7 @@
         },
         methods: {
             addItem() {
-                axios.post(server._url + '/shop/items/addItem', this.itemData).then((response) => {
+                axios.post(server._url + '/shop/item/addItem', this.itemData).then((response) => {
                     let status = response.data.status;
                     if (status === true) {
                         // window.location.replace(server._url + '/shop/items/');
@@ -59,6 +68,13 @@
                     }
                 });
             },
+            // formImage() {
+            //     console.log('ok');
+            //     let image = $('#image');
+            //     console.log(image.files);
+            //     console.log(image.files[0]);
+            //     this.itemData.image = image.files;
+            // },
             getCat() {
                 axios.get(server._url + '/api/categoryList').then((response) => {
                     this.catList = response.data;

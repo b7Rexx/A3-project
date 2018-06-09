@@ -33,7 +33,7 @@ Route::group(['prefix' => 'shop'], function () {
     Route::get('/', 'ShopController@LoggedProfile')->name('shop-profile');
     Route::get('/items/{route?}', 'ShopController@shopItems')->name('shop-items');
     Route::post('/id/image', 'ShopController@profileImageUpload')->name('shop-profile-image-upload');
-    Route::post('items/addItem','ShopController@addItem');
+    Route::post('item/addItem','ShopController@addItem');
     Route::get('/itemShopList','ShopController@itemShopList');
 
 });

@@ -19,6 +19,7 @@ class CreateItemsTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->integer('shop_id')->unsigned();
             $table->float('price');
+            $table->string('image');
             $table->string('status');
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('shop_id')->references('id')->on('shops')->onUpdate('cascade')->onDelete('cascade');

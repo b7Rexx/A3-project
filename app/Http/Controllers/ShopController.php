@@ -73,6 +73,16 @@ class ShopController extends Controller
     {
         $data['name'] = $request->name;
         $data['price'] = $request->price;
+//        if ($request->hasFile('image')) {
+//            echo "<script>console.log( 'STEP OK');</script>";
+//            $image = $request->file('image');
+//            $name = $request->shop_id . '_' . time() . '.' . $image->getClientOriginalExtension();
+//            $destinationPath = public_path('/images/shop/item/');
+//            if ($image->move($destinationPath, $name)) {
+//                $data['image'] = $name;
+//            };
+//        }
+        $data['image'] = 'dummy.jpg';
         $data['status'] = $request->status;
         $data['category_id'] = $request->category;
         $data['shop_id'] = $request->shop_id;
@@ -83,10 +93,11 @@ class ShopController extends Controller
         return response(['status' => false]);
     }
 
+
     public function itemShopList()
     {
         $id = $this->_data['shop_id'];
-        $data = Item::where('shop_id', '=', $id)->orderBy('id','DESC')->get();
+        $data = Item::where('shop_id', '=', $id)->orderBy('id', 'DESC')->get();
         return response($data);
     }
 }
