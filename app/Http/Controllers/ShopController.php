@@ -82,4 +82,11 @@ class ShopController extends Controller
         }
         return response(['status' => false]);
     }
+
+    public function itemShopList()
+    {
+        $id = $this->_data['shop_id'];
+        $data = Item::where('shop_id', '=', $id)->orderBy('id','DESC')->get();
+        return response($data);
+    }
 }

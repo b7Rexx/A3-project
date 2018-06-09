@@ -2,6 +2,7 @@
     <div>
         <div class="text-center p-3">
             <h1><i class="fa fa-clone"></i> Add Item</h1>
+            <div class="alert alert-success" v-if="addStatus"><i class="fa fa-check-circle"></i> Item added successfully!</div>
         </div>
         <div class="pl-5 pr-5">
             <form v-on:submit.prevent="addItem()">
@@ -37,7 +38,8 @@
                     shop_id: server._shopid,
                     token: server._token
                 },
-                catList: []
+                catList: [],
+                addStatus: false,
             }
         },
         methods: {
@@ -45,7 +47,12 @@
                 axios.post(server._url + '/shop/items/addItem', this.itemData).then((response) => {
                     let status = response.data.status;
                     if (status === true) {
-                        window.location.replace(server._url + '/shop/items/');
+                        // window.location.replace(server._url + '/shop/items/');
+                        let stat = this;
+                        this.addStatus = true;
+                        setTimeout(function () {
+                            stat.addStatus = false;
+                        }, 5000);
                     } else {
                         console.log(response);
                         alert('failed');
