@@ -28,9 +28,9 @@ class ShopController extends Controller
     {
         $email = $request->email;
         $password = $request->password;
-        $rememberMe = $request->remember_me;
+        $remember = $request->remember === true ?? false;
 
-        if (Auth::guard('shop')->attempt(['email' => $email, 'password' => $password], $rememberMe)) {
+        if (Auth::guard('shop')->attempt(['email' => $email, 'password' => $password], $remember)) {
 //            return redirect()->intended(route('shop-profile'));
             return response(['status' => true]);
 
@@ -108,12 +108,27 @@ class ShopController extends Controller
         $data['category_id'] = $request->category;
         $data['shop_id'] = $request->shop_id;
 
-        if ($last_id = Item::create($data)) {
+        if ($last_id = Item::create($data)->id) {
             return response(['status' => true, 'last_id' => $last_id]);
         }
         return response(['status' => false]);
     }
 
+    public function addImage(Request $request)
+    {
+        if ($request->hasFile('file')) {
+            echo "<script>console.log( 'STEP OK');</script>";
+            $image = $request->file('file');
+            $name = $request->id . '_' . time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/images/shop/item/');
+            if ($image->move($destinationPath, $name)) {
+                $data['image'] = $name;
+                Item::find($request->id)->update($data);
+                return response(['status' => 'image added']);
+            };
+        }
+        return response(['status' => 'failed']);
+    }
 
     public function itemShopList()
     {

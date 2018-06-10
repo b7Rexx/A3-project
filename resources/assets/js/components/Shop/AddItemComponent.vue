@@ -28,14 +28,10 @@
             <div class="addImage">
                 <form v-on:submit.prevent="addImage()">
                     <h5>Add image to item</h5>
-
                     <a id="close" class="btn btn-primary" v-on:click="closeImg()">skip</a>
                     <hr>
                     <label><i class="fa fa-image"></i> Image : </label>
-
-                    <input id="fileUploadFile" type="file" @change="bindFile()" class="form-control">
-                    <!--<input type="file" id="image" name="image">-->
-                    <!--<input type="file" @change="formImage()" name="image" id="image" accept="image/*">-->
+                    <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
                     <br><br>
                     <input type="submit" class="btn btn-success" value="Submit">
                 </form>
@@ -51,7 +47,6 @@
                 itemData: {
                     name: '',
                     category: '',
-                    // image: '',
                     price: '0',
                     status: 'on',
                     shop_id: server._shopid,
@@ -59,8 +54,11 @@
                 },
                 catList: [],
                 addStatus: false,
-                last_insert_id: '',
-                fileUploadFormData: new FormData(),
+                imageData: {
+                    file: '',
+                    id: '',
+                    token: server._token
+                },
             }
         },
         methods: {
@@ -68,7 +66,8 @@
                 axios.post(server._url + '/shop/item/addItem', this.itemData).then((response) => {
                     let status = response.data.status;
                     if (status === true) {
-                        this.last_insert_id = response.data.last_id;
+                        console.log(response);
+                        this.imageData.id = response.data.last_id;
                         // window.location.replace(server._url + '/shop/items/');
                         // let stat = this;
                         // this.addStatus = true;
@@ -82,23 +81,20 @@
                     }
                 });
             },
-            bindFile() {
-                e.preventDefault();
-                this.fileUploadFormData.append('file', e.target.files[0]);
+            handleFileUpload() {
+                this.imageData.file = this.$refs.file.files[0];
             },
-            addImage(e) {
-                e.preventDefault();
-                if (this.fileUploadData.file == undefined) this.fileUploadFormData.append('file', '');
+            addImage() {
+                let formData = new FormData();
+                formData.append('file', this.imageData.file);
+                formData.append('id', this.imageData.id);
+                formData.append('token', this.imageData.token);
 
-                console.log(this.fileUploadData.file);
-                // axios.post('/uploadDocument', this.fileUploadFormData, function (data) {
-                    //code your logic here
-                // }).error(function (data, status, request) {
-
-                    //error handling here
-                // });
+                axios.post(server._url + '/shop/item/addImage', formData, {headers: {'Content-Type': 'multipart/form-data'}}
+                ).then((response) => {
+                    console.log(response);
+                });
                 this.closeImg();
-
             },
             closeImg() {
                 $('.addImage').css({display: 'none'});
@@ -148,7 +144,7 @@
         position: absolute;
         z-index: 5;
         padding: 70px 20px 70px 20px;
-        background: rgba(255, 255, 255, .9);
+        background: white;
         border-radius: 10px;
         height: 300px;
         top: 40%;

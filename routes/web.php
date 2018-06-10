@@ -37,6 +37,7 @@ Route::group(['prefix' => 'shop', 'middleware' => 'auth:shop'], function () {
     Route::get('/items/{route?}', 'ShopController@shopItems')->name('shop-items');
     Route::post('/id/image', 'ShopController@profileImageUpload')->name('shop-profile-image-upload');
     Route::post('item/addItem', 'ShopController@addItem');
+    Route::post('item/addImage', 'ShopController@addImage');
     Route::get('/itemShopList', 'ShopController@itemShopList');
 
 });

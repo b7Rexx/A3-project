@@ -14806,7 +14806,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             logData: {
                 email: '',
                 password: '',
-                remember_me: false,
+                remember: '',
                 token: server._token
             }
         };
@@ -14917,19 +14917,19 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.logData.remember_me,
-                expression: "logData.remember_me"
+                value: _vm.logData.remember,
+                expression: "logData.remember"
               }
             ],
             attrs: { type: "checkbox", value: "true" },
             domProps: {
-              checked: Array.isArray(_vm.logData.remember_me)
-                ? _vm._i(_vm.logData.remember_me, "true") > -1
-                : _vm.logData.remember_me
+              checked: Array.isArray(_vm.logData.remember)
+                ? _vm._i(_vm.logData.remember, "true") > -1
+                : _vm.logData.remember
             },
             on: {
               change: function($event) {
-                var $$a = _vm.logData.remember_me,
+                var $$a = _vm.logData.remember,
                   $$el = $event.target,
                   $$c = $$el.checked ? true : false
                 if (Array.isArray($$a)) {
@@ -14937,17 +14937,17 @@ var render = function() {
                     $$i = _vm._i($$a, $$v)
                   if ($$el.checked) {
                     $$i < 0 &&
-                      _vm.$set(_vm.logData, "remember_me", $$a.concat([$$v]))
+                      _vm.$set(_vm.logData, "remember", $$a.concat([$$v]))
                   } else {
                     $$i > -1 &&
                       _vm.$set(
                         _vm.logData,
-                        "remember_me",
+                        "remember",
                         $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                       )
                   }
                 } else {
-                  _vm.$set(_vm.logData, "remember_me", $$c)
+                  _vm.$set(_vm.logData, "remember", $$c)
                 }
               }
             }

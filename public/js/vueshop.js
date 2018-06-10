@@ -14775,7 +14775,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\nlabel {\n    padding-left: 30px;\n}\nh5 {\n    display: inline;\n}\n\n/*input[type=\"radio\"]:checked {*/\n/*visibility: hidden;*/\n/*}*/\n.addImage {\n    display: none;\n    position: absolute;\n    z-index: 5;\n    padding: 70px 20px 70px 20px;\n    background: rgba(255, 255, 255, .9);\n    border-radius: 10px;\n    height: 300px;\n    top: 40%;\n}\n#close {\n    float: right;\n}\n", ""]);
+exports.push([module.i, "\nlabel {\n    padding-left: 30px;\n}\nh5 {\n    display: inline;\n}\n\n/*input[type=\"radio\"]:checked {*/\n/*visibility: hidden;*/\n/*}*/\n.addImage {\n    display: none;\n    position: absolute;\n    z-index: 5;\n    padding: 70px 20px 70px 20px;\n    background: white;\n    border-radius: 10px;\n    height: 300px;\n    top: 40%;\n}\n#close {\n    float: right;\n}\n", ""]);
 
 // exports
 
@@ -14828,10 +14828,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -14839,7 +14835,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             itemData: {
                 name: '',
                 category: '',
-                // image: '',
                 price: '0',
                 status: 'on',
                 shop_id: server._shopid,
@@ -14847,8 +14842,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             catList: [],
             addStatus: false,
-            last_insert_id: '',
-            fileUploadFormData: new FormData()
+            imageData: {
+                file: '',
+                id: '',
+                token: server._token
+            }
         };
     },
 
@@ -14859,7 +14857,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post(server._url + '/shop/item/addItem', this.itemData).then(function (response) {
                 var status = response.data.status;
                 if (status === true) {
-                    _this.last_insert_id = response.data.last_id;
+                    console.log(response);
+                    _this.imageData.id = response.data.last_id;
                     // window.location.replace(server._url + '/shop/items/');
                     // let stat = this;
                     // this.addStatus = true;
@@ -14873,21 +14872,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             });
         },
-        bindFile: function bindFile() {
-            e.preventDefault();
-            this.fileUploadFormData.append('file', e.target.files[0]);
+        handleFileUpload: function handleFileUpload() {
+            this.imageData.file = this.$refs.file.files[0];
         },
-        addImage: function addImage(e) {
-            e.preventDefault();
-            if (this.fileUploadData.file == undefined) this.fileUploadFormData.append('file', '');
+        addImage: function addImage() {
+            var formData = new FormData();
+            formData.append('file', this.imageData.file);
+            formData.append('id', this.imageData.id);
+            formData.append('token', this.imageData.token);
 
-            console.log(this.fileUploadData.file);
-            // axios.post('/uploadDocument', this.fileUploadFormData, function (data) {
-            //code your logic here
-            // }).error(function (data, status, request) {
-
-            //error handling here
-            // });
+            axios.post(server._url + '/shop/item/addImage', formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
+                console.log(response);
+            });
             this.closeImg();
         },
         closeImg: function closeImg() {
@@ -15127,11 +15123,11 @@ var render = function() {
             _vm._m(5),
             _vm._v(" "),
             _c("input", {
-              staticClass: "form-control",
-              attrs: { id: "fileUploadFile", type: "file" },
+              ref: "file",
+              attrs: { type: "file", id: "file" },
               on: {
                 change: function($event) {
-                  _vm.bindFile()
+                  _vm.handleFileUpload()
                 }
               }
             }),

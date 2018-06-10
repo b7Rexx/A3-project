@@ -11,7 +11,7 @@
                 <label>Password <i class="fa fa-key"></i> : </label>
                 <input type="password" v-model="logData.password" class="form-control">
                 <br>
-                <input type="checkbox" value="true" v-model="logData.remember_me">
+                <input type="checkbox" value="true" v-model="logData.remember">
                 <label> <i class="fa fa-comment"></i> Remember SignIn </label>
                 <br>
                 <input type="submit" class="btn btn-success" value="Login">
@@ -28,7 +28,7 @@
                 logData: {
                     email: '',
                     password: '',
-                    remember_me: false,
+                    remember: '',
                     token: server._token,
                 }
             }
