@@ -4,10 +4,13 @@
         <hr>
         <div class="row">
 
-            <div v-for="item in itemList" class="col-sm-5 col-md-4 item text-center">
-                <h5>{{item.name}}</h5>
-                <img v-bind:src="imagelink+item.image" alt="Image">
-                <a>Rs. {{item.price}}</a>
+            <div v-for="item in itemList" class="col-sm-6 col-lg-4  bg-items p-3">
+                <div class="index-items text-center" v-bind:title="item.name">
+                    <h5>{{item.name | strlimit}}</h5>
+                    <img v-bind:src="imagelink+item.image" alt="Image">
+                </div>
+                <hr>
+                <div class="text-right">Rs. {{item.price}}</div>
             </div>
         </div>
     </div>
@@ -37,6 +40,11 @@
             '$route': function () {
                 this.itemShopList();
             }
+        },
+        filters: {
+            strlimit: function (value) {
+                return value.slice(0, 18) + '...';
+            }
         }
     }
 </script>
@@ -47,19 +55,7 @@
         background: white;
         padding: 15px;
         border-right: 1px solid lightgrey;
+        border-bottom: 1px solid lightgrey;
     }
 
-    .item > img {
-        max-width: 120px;
-        max-height: 120px;
-        border-radius: 60px;
-    }
-
-    .item > a {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        font-size:18px;
-        color:green;
-    }
 </style>

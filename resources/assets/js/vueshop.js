@@ -30,3 +30,5 @@ const shopItem = new Vue({
     router,
     el: '#shop-item',
 });
+
+

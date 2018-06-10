@@ -1,23 +1,54 @@
 <template>
     <div class="p-5 text-center">
-        <h2> <i class="fa fa-shopping-cart fa-2x"></i>&nbsp;&nbsp;&nbsp; Sign In to Shop</h2>
-        <a class="p-2">Don't have an account? Register <router-link to="/register">Here !</router-link></a>
-
-        <div class="p-5">
-            <form>
+        <h2><i class="fa fa-shopping-cart fa-2x"></i>&nbsp;&nbsp;&nbsp; Sign In to Shop</h2>
+        <a class="p-2">Don't have an account? Register
+            <router-link to="/register">Here !</router-link>
+        </a>
+        <div class="p-3">
+            <form v-on:submit.prevent="login()">
                 <label>Email <i class="fa fa-envelope"></i> :</label>
-                <input type="email" name="email" class="form-control">
+                <input type="email" v-model="logData.email" class="form-control">
                 <label>Password <i class="fa fa-key"></i> : </label>
-                <input type="password" name="password" class="form-control">
+                <input type="password" v-model="logData.password" class="form-control">
+                <br>
+                <input type="checkbox" value="true" v-model="logData.remember_me">
+                <label> <i class="fa fa-comment"></i> Remember SignIn </label>
                 <br>
                 <input type="submit" class="btn btn-success" value="Login">
             </form>
         </div>
+
     </div>
 </template>
 
 <script>
-    export default {}
+    export default {
+        data() {
+            return {
+                logData: {
+                    email: '',
+                    password: '',
+                    remember_me: false,
+                    token: server._token,
+                }
+            }
+        },
+        methods: {
+            login() {
+                axios.post(server._url + '/api/shop/login', this.logData).then((response) => {
+                    console.log(response);
+                    let stat = response.data.status;
+                    if (stat === true) {
+                        window.location.replace(server._url + '/shop');
+                    } else {
+                        console.log(response);
+                    }
+                }).catch(error => {
+                    console.log(error.response)
+                });
+            }
+        }
+    }
 </script>
 
 <style>

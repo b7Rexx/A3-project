@@ -14775,7 +14775,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\nlabel {\n    padding-left: 30px;\n}\nh5 {\n    display: inline;\n}\n\n/*input[type=\"radio\"]:checked {*/\n/*visibility: hidden;*/\n/*}*/\n\n\n", ""]);
+exports.push([module.i, "\nlabel {\n    padding-left: 30px;\n}\nh5 {\n    display: inline;\n}\n\n/*input[type=\"radio\"]:checked {*/\n/*visibility: hidden;*/\n/*}*/\n.addImage {\n    display: none;\n    position: absolute;\n    z-index: 5;\n    padding: 70px 20px 70px 20px;\n    background: rgba(255, 255, 255, .9);\n    border-radius: 10px;\n    height: 300px;\n    top: 40%;\n}\n#close {\n    float: right;\n}\n", ""]);
 
 // exports
 
@@ -14822,6 +14822,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -14829,14 +14839,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             itemData: {
                 name: '',
                 category: '',
-                // image:'',
+                // image: '',
                 price: '0',
                 status: 'on',
                 shop_id: server._shopid,
                 token: server._token
             },
             catList: [],
-            addStatus: false
+            addStatus: false,
+            last_insert_id: '',
+            fileUploadFormData: new FormData()
         };
     },
 
@@ -14847,26 +14859,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post(server._url + '/shop/item/addItem', this.itemData).then(function (response) {
                 var status = response.data.status;
                 if (status === true) {
+                    _this.last_insert_id = response.data.last_id;
                     // window.location.replace(server._url + '/shop/items/');
-                    var stat = _this;
-                    _this.addStatus = true;
-                    setTimeout(function () {
-                        stat.addStatus = false;
-                    }, 5000);
+                    // let stat = this;
+                    // this.addStatus = true;
+                    // setTimeout(function () {
+                    //     stat.addStatus = false;
+                    // }, 5000);
+                    $('.addImage').css({ display: 'block' });
                 } else {
                     console.log(response);
                     alert('failed');
                 }
             });
         },
+        bindFile: function bindFile() {
+            e.preventDefault();
+            this.fileUploadFormData.append('file', e.target.files[0]);
+        },
+        addImage: function addImage(e) {
+            e.preventDefault();
+            if (this.fileUploadData.file == undefined) this.fileUploadFormData.append('file', '');
 
-        // formImage() {
-        //     console.log('ok');
-        //     let image = $('#image');
-        //     console.log(image.files);
-        //     console.log(image.files[0]);
-        //     this.itemData.image = image.files;
-        // },
+            console.log(this.fileUploadData.file);
+            // axios.post('/uploadDocument', this.fileUploadFormData, function (data) {
+            //code your logic here
+            // }).error(function (data, status, request) {
+
+            //error handling here
+            // });
+            this.closeImg();
+        },
+        closeImg: function closeImg() {
+            $('.addImage').css({ display: 'none' });
+            var stat = this;
+            this.addStatus = true;
+            setTimeout(function () {
+                stat.addStatus = false;
+            }, 5000);
+        },
         getCat: function getCat() {
             var _this2 = this;
 
@@ -14875,9 +14906,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         }
     },
+
     created: function created() {
         this.getCat();
     },
+
     watch: {
         // Call the method again if the route changes
         '$route': function $route() {
@@ -15059,7 +15092,60 @@ var render = function() {
             attrs: { type: "submit", value: "Submit" }
           })
         ]
-      )
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "addImage" }, [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                _vm.addImage()
+              }
+            }
+          },
+          [
+            _c("h5", [_vm._v("Add image to item")]),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { id: "close" },
+                on: {
+                  click: function($event) {
+                    _vm.closeImg()
+                  }
+                }
+              },
+              [_vm._v("skip")]
+            ),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _vm._m(5),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { id: "fileUploadFile", type: "file" },
+              on: {
+                change: function($event) {
+                  _vm.bindFile()
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("br"),
+            _c("br"),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "btn btn-success",
+              attrs: { type: "submit", value: "Submit" }
+            })
+          ]
+        )
+      ])
     ])
   ])
 }
@@ -15107,6 +15193,15 @@ var staticRenderFns = [
     return _c("label", [
       _c("i", { staticClass: "fa fa-check" }),
       _vm._v(" Status ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _c("i", { staticClass: "fa fa-image" }),
+      _vm._v(" Image : ")
     ])
   }
 ]
@@ -15205,7 +15300,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.item {\n    position: relative;\n    background: white;\n    padding: 15px;\n    border-right: 1px solid lightgrey;\n}\n.item > img {\n    max-width: 120px;\n    max-height: 120px;\n    border-radius: 60px;\n}\n.item > a {\n    position: absolute;\n    bottom: 10px;\n    right: 10px;\n    font-size:18px;\n    color:green;\n}\n", ""]);
+exports.push([module.i, "\n.item {\n    position: relative;\n    background: white;\n    padding: 15px;\n    border-right: 1px solid lightgrey;\n    border-bottom: 1px solid lightgrey;\n}\n\n", ""]);
 
 // exports
 
@@ -15216,6 +15311,9 @@ exports.push([module.i, "\n.item {\n    position: relative;\n    background: whi
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -15258,6 +15356,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         '$route': function $route() {
             this.itemShopList();
         }
+    },
+    filters: {
+        strlimit: function strlimit(value) {
+            return value.slice(0, 18) + '...';
+        }
     }
 });
 
@@ -15278,19 +15381,28 @@ var render = function() {
       "div",
       { staticClass: "row" },
       _vm._l(_vm.itemList, function(item) {
-        return _c(
-          "div",
-          { staticClass: "col-sm-5 col-md-4 item text-center" },
-          [
-            _c("h5", [_vm._v(_vm._s(item.name))]),
-            _vm._v(" "),
-            _c("img", {
-              attrs: { src: _vm.imagelink + item.image, alt: "Image" }
-            }),
-            _vm._v(" "),
-            _c("a", [_vm._v("Rs. " + _vm._s(item.price))])
-          ]
-        )
+        return _c("div", { staticClass: "col-sm-6 col-lg-4  bg-items p-3" }, [
+          _c(
+            "div",
+            {
+              staticClass: "index-items text-center",
+              attrs: { title: item.name }
+            },
+            [
+              _c("h5", [_vm._v(_vm._s(_vm._f("strlimit")(item.name)))]),
+              _vm._v(" "),
+              _c("img", {
+                attrs: { src: _vm.imagelink + item.image, alt: "Image" }
+              })
+            ]
+          ),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-right" }, [
+            _vm._v("Rs. " + _vm._s(item.price))
+          ])
+        ])
       })
     )
   ])

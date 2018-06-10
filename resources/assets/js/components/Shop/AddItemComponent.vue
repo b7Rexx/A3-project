@@ -10,12 +10,6 @@
             <form v-on:submit.prevent="addItem()">
                 <label><i class="fa fa-edit"></i> Name : </label>
                 <input type="text" v-model="itemData.name" class="form-control" required>
-
-
-                <!--<label><i class="fa fa-image"></i> Image : </label>-->
-                <!--<input type="file" name="image" id="image" @change="formImage()">-->
-                <!--<input type="file" @change="formImage()" name="image" id="image" accept="image/*">-->
-
                 <label><i class="fa fa-th"></i> Category : </label>
                 <select v-model="itemData.category" class="form-control" required>
                     <option> -- Select a Category--</option>
@@ -30,6 +24,22 @@
                 <br>
                 <input type="submit" class="btn btn-success" value="Submit">
             </form>
+
+            <div class="addImage">
+                <form v-on:submit.prevent="addImage()">
+                    <h5>Add image to item</h5>
+
+                    <a id="close" class="btn btn-primary" v-on:click="closeImg()">skip</a>
+                    <hr>
+                    <label><i class="fa fa-image"></i> Image : </label>
+
+                    <input id="fileUploadFile" type="file" @change="bindFile()" class="form-control">
+                    <!--<input type="file" id="image" name="image">-->
+                    <!--<input type="file" @change="formImage()" name="image" id="image" accept="image/*">-->
+                    <br><br>
+                    <input type="submit" class="btn btn-success" value="Submit">
+                </form>
+            </div>
         </div>
     </div>
 </template>
@@ -41,7 +51,7 @@
                 itemData: {
                     name: '',
                     category: '',
-                    // image:'',
+                    // image: '',
                     price: '0',
                     status: 'on',
                     shop_id: server._shopid,
@@ -49,6 +59,8 @@
                 },
                 catList: [],
                 addStatus: false,
+                last_insert_id: '',
+                fileUploadFormData: new FormData(),
             }
         },
         methods: {
@@ -56,40 +68,65 @@
                 axios.post(server._url + '/shop/item/addItem', this.itemData).then((response) => {
                     let status = response.data.status;
                     if (status === true) {
+                        this.last_insert_id = response.data.last_id;
                         // window.location.replace(server._url + '/shop/items/');
-                        let stat = this;
-                        this.addStatus = true;
-                        setTimeout(function () {
-                            stat.addStatus = false;
-                        }, 5000);
+                        // let stat = this;
+                        // this.addStatus = true;
+                        // setTimeout(function () {
+                        //     stat.addStatus = false;
+                        // }, 5000);
+                        $('.addImage').css({display: 'block'});
                     } else {
                         console.log(response);
                         alert('failed');
                     }
                 });
             },
-            // formImage() {
-            //     console.log('ok');
-            //     let image = $('#image');
-            //     console.log(image.files);
-            //     console.log(image.files[0]);
-            //     this.itemData.image = image.files;
-            // },
+            bindFile() {
+                e.preventDefault();
+                this.fileUploadFormData.append('file', e.target.files[0]);
+            },
+            addImage(e) {
+                e.preventDefault();
+                if (this.fileUploadData.file == undefined) this.fileUploadFormData.append('file', '');
+
+                console.log(this.fileUploadData.file);
+                // axios.post('/uploadDocument', this.fileUploadFormData, function (data) {
+                    //code your logic here
+                // }).error(function (data, status, request) {
+
+                    //error handling here
+                // });
+                this.closeImg();
+
+            },
+            closeImg() {
+                $('.addImage').css({display: 'none'});
+                let stat = this;
+                this.addStatus = true;
+                setTimeout(function () {
+                    stat.addStatus = false;
+                }, 5000);
+            },
             getCat() {
                 axios.get(server._url + '/api/categoryList').then((response) => {
                     this.catList = response.data;
                 });
             }
 
-        },
+        }
+        ,
         created: function () {
             this.getCat()
-        },
+        }
+        ,
         watch: {
             // Call the method again if the route changes
-            '$route': function () {
-                this.getCat();
-            }
+            '$route':
+
+                function () {
+                    this.getCat();
+                }
         }
     }
 </script>
@@ -106,6 +143,18 @@
     /*input[type="radio"]:checked {*/
     /*visibility: hidden;*/
     /*}*/
+    .addImage {
+        display: none;
+        position: absolute;
+        z-index: 5;
+        padding: 70px 20px 70px 20px;
+        background: rgba(255, 255, 255, .9);
+        border-radius: 10px;
+        height: 300px;
+        top: 40%;
+    }
 
-
+    #close {
+        float: right;
+    }
 </style>

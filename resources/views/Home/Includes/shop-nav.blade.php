@@ -29,7 +29,13 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
-            <a href="#"style="position: absolute;right:30px;"> <i class="fa fa-cogs"> Settings</i></a>
+            <div class="dropdown" style="position: absolute;right:30px;">
+                <a class="dropdown-toggle" data-toggle="dropdown" ><i class="fa fa-cogs"> Settings</i></a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Edit Profile</a>
+                    <a href="{{route('shop-logout')}}" class="dropdown-item">Logout</a>
+                </div>
+            </div>
         </ul>
     </div>
 </nav>

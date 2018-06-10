@@ -37,6 +37,11 @@ footer {
     /*background: linear-gradient(to right, transparent, white, white, white, white, white, white, white, transparent);*/
 }
 
+.bg-items {
+    background-color: rgba(180, 220, 225, 0.6);
+    border:6px solid rgba(255, 255, 255, 0.5);
+}
+
 .carousel img {
     width: 100%;
     height: auto;
@@ -48,8 +53,8 @@ footer {
 }
 
 .profile-image > img {
-    max-width:240px;
-    min-height: 280px;
+    max-width: 200px;
+    min-height: 240px;
     width: 100%;
 }
 
@@ -58,4 +63,14 @@ footer {
     position: absolute;
     top: 50%;
     left: 30%;
+}
+
+#loginform {
+    display: none;
+}
+
+.index-items > img {
+    max-height: 120px;
+    width: 120px;
+    border-radius: 30px;
 }

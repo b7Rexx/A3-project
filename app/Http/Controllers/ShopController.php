@@ -6,6 +6,7 @@ use App\Item;
 use App\Main;
 use App\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
@@ -21,16 +22,33 @@ class ShopController extends Controller
             $array[$list['name']] = $list['value'];
         }
         $this->_data['mains'] = $array;
-
-        //Set shop id after login
-        $this->_data['shop_id'] = 2;
-
-
     }
+
+    public function loginAction(Request $request)
+    {
+        $email = $request->email;
+        $password = $request->password;
+        $rememberMe = $request->remember_me;
+
+        if (Auth::guard('shop')->attempt(['email' => $email, 'password' => $password], $rememberMe)) {
+//            return redirect()->intended(route('shop-profile'));
+            return response(['status' => true]);
+
+        }
+        return response(['status' => false]);
+//        return redirect()->back()->with('fail', 'Invalid Email or Password Combination.');
+    }
+
+    public function logout()
+    {
+        Auth::guard('shop')->logout();
+        return redirect(route('home'));
+    }
+
 
     public function profile($id)
     {
-        if (empty($id)) return redirect()->to(route('home'));
+        if (empty($id)) return redirect()->to(route('login'));
 
         $this->_data['shop'] = Shop::find($id);
         return view($this->_path . 'shop-profile', $this->_data);
@@ -38,8 +56,8 @@ class ShopController extends Controller
 
     public function LoggedProfile()
     {
+        $this->_data['shop_id'] = Auth::user()->id;
         if (empty($this->_data['shop_id'])) return redirect()->to(route('home'));
-
         $id = $this->_data['shop_id'];
         $this->_data['shop'] = Shop::find($id);
         return view($this->_path . 'shop-profile', $this->_data);
@@ -47,6 +65,7 @@ class ShopController extends Controller
 
     public function shopItems()
     {
+        $this->_data['shop_id'] = Auth::user()->id;
         if (empty($this->_data['shop_id'])) return redirect()->to(route('home'));
 
         $id = $this->_data['shop_id'];
@@ -56,6 +75,8 @@ class ShopController extends Controller
 
     public function profileImageUpload(Request $request)
     {
+        $this->_data['shop_id'] = Auth::user()->id;
+
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $name = time() . '.' . $image->getClientOriginalExtension();
@@ -87,8 +108,8 @@ class ShopController extends Controller
         $data['category_id'] = $request->category;
         $data['shop_id'] = $request->shop_id;
 
-        if (Item::create($data)) {
-            return response(['status' => true]);
+        if ($last_id = Item::create($data)) {
+            return response(['status' => true, 'last_id' => $last_id]);
         }
         return response(['status' => false]);
     }
@@ -96,6 +117,7 @@ class ShopController extends Controller
 
     public function itemShopList()
     {
+        $this->_data['shop_id'] = Auth::user()->id;
         $id = $this->_data['shop_id'];
         $data = Item::where('shop_id', '=', $id)->orderBy('id', 'DESC')->get();
         return response($data);

@@ -38,11 +38,11 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'shops',
+            'provider' => 'users',
         ],
-        'shop'=>[
-            'driver'=>'session',
-            'provider'=>'shops'
+        'shop' => [
+            'driver' => 'session',
+            'provider' => 'shops',
         ],
         'api' => [
             'driver' => 'token',

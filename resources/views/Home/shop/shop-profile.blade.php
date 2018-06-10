@@ -20,7 +20,6 @@
                     <input type="text" class="form-control">
                 </form>
             </div>
-
         </div>
     </div>
 @endsection

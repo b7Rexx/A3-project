@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
 use App\Main;
 use App\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,11 +26,15 @@ class HomeController extends Controller
 
     public function index()
     {
+        $this->_data['items'] = Item::orderBy('id', 'DESC')->paginate(12);
         return view($this->_path . 'index', $this->_data);
     }
 
     public function signup()
     {
+        if (Auth::guard('shop')->check()) {
+            return redirect(route('shop-profile'));
+        }
         return view($this->_path . 'signup', $this->_data);
     }
 
@@ -55,5 +61,11 @@ class HomeController extends Controller
 
         Shop::find($request->id)->update($data);
         return response(['id' => $request->id]);
+    }
+
+    public function shopList()
+    {
+        $this->_data['shops'] = Shop::paginate(6);
+        return view($this->_path . 'shop-list', $this->_data);
     }
 }

@@ -14765,7 +14765,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -14794,8 +14794,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            logData: {
+                email: '',
+                password: '',
+                remember_me: false,
+                token: server._token
+            }
+        };
+    },
+
+    methods: {
+        login: function login() {
+            axios.post(server._url + '/api/shop/login', this.logData).then(function (response) {
+                console.log(response);
+                var stat = response.data.status;
+                if (stat === true) {
+                    window.location.replace(server._url + '/shop');
+                } else {
+                    console.log(response);
+                }
+            }).catch(function (error) {
+                console.log(error.response);
+            });
+        }
+    }
+});
 
 /***/ }),
 /* 51 */
@@ -14812,13 +14844,126 @@ var render = function() {
       "a",
       { staticClass: "p-2" },
       [
-        _vm._v("Don't have an account? Register "),
+        _vm._v("Don't have an account? Register\n        "),
         _c("router-link", { attrs: { to: "/register" } }, [_vm._v("Here !")])
       ],
       1
     ),
     _vm._v(" "),
-    _vm._m(1)
+    _c("div", { staticClass: "p-3" }, [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              _vm.login()
+            }
+          }
+        },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.logData.email,
+                expression: "logData.email"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "email" },
+            domProps: { value: _vm.logData.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.logData, "email", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._m(2),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.logData.password,
+                expression: "logData.password"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "password" },
+            domProps: { value: _vm.logData.password },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.logData, "password", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.logData.remember_me,
+                expression: "logData.remember_me"
+              }
+            ],
+            attrs: { type: "checkbox", value: "true" },
+            domProps: {
+              checked: Array.isArray(_vm.logData.remember_me)
+                ? _vm._i(_vm.logData.remember_me, "true") > -1
+                : _vm.logData.remember_me
+            },
+            on: {
+              change: function($event) {
+                var $$a = _vm.logData.remember_me,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = "true",
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 &&
+                      _vm.$set(_vm.logData, "remember_me", $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      _vm.$set(
+                        _vm.logData,
+                        "remember_me",
+                        $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                      )
+                  }
+                } else {
+                  _vm.$set(_vm.logData, "remember_me", $$c)
+                }
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._m(3),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "btn btn-success",
+            attrs: { type: "submit", value: "Login" }
+          })
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -14835,37 +14980,29 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-5" }, [
-      _c("form", [
-        _c("label", [
-          _vm._v("Email "),
-          _c("i", { staticClass: "fa fa-envelope" }),
-          _vm._v(" :")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "email", name: "email" }
-        }),
-        _vm._v(" "),
-        _c("label", [
-          _vm._v("Password "),
-          _c("i", { staticClass: "fa fa-key" }),
-          _vm._v(" : ")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "password", name: "password" }
-        }),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "btn btn-success",
-          attrs: { type: "submit", value: "Login" }
-        })
-      ])
+    return _c("label", [
+      _vm._v("Email "),
+      _c("i", { staticClass: "fa fa-envelope" }),
+      _vm._v(" :")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v("Password "),
+      _c("i", { staticClass: "fa fa-key" }),
+      _vm._v(" : ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _c("i", { staticClass: "fa fa-comment" }),
+      _vm._v(" Remember SignIn ")
     ])
   }
 ]

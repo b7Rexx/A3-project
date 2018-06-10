@@ -20,7 +20,7 @@
                 <hr>
                 <h4>Sign in for more features</h4>
                 <hr>
-                <a href="{{route('signup')}}"><img src="{{URL::to('images/login-image.jpg')}}" alt="Login"></a>
+                <a href="{{route('login')}}"><img src="{{URL::to('images/login-image.jpg')}}" alt="Login"></a>
 
             </div>
         </div>
@@ -37,7 +37,7 @@
             </div>
             <div class="col-sm-4 text-center p-5">
                 <div data-aos="fade-up-left" data-aos-duration="1000">
-                    <a href="">
+                    <a href="{{route('shop-profile')}}">
                         <i class="fa fa-shopping-cart fa-5x"></i><br>
                         <h3>Shops</h3>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam beatae repudiandae.
@@ -55,8 +55,31 @@
             </div>
         </div>
 
-        <div class="row">
-            SHOPS CONTENT
+        <div>
+            <hr>
+            <h1 class="text-center"> <i class="fa fa-archive"></i> shop item</h1>
+            <br>
+            <div class="row">
+                @forelse($items as $item)
+                    <div class="col-sm-6 col-md-4 col-lg-3 bg-items p-3">
+                        <div title="{{$item->name}}" class="index-items text-center">
+                            <h4>{{str_limit($item->name,18)}}</h4>
+                            <img src="{{URL::to('images/shop/item/'.$item->image)}}" alt="Shop image">
+                        </div>
+                        <hr>
+                        <div class="text-right">
+                            Rs. {{$item->price}}
+                        </div>
+                    </div>
+                @empty
+                    No items.
+                @endforelse
+            </div>
+            <div class="row">
+                <br>
+                <hr>
+                {{$items->links()}}
+            </div>
         </div>
     </div>
 @endsection

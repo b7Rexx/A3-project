@@ -11,7 +11,7 @@
                 <a class="nav-link" href="{{route('home')}}"> <i class="fa fa-home"></i> Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item pr-3">
-                <a class="nav-link" href="#">Shop</a>
+                <a class="nav-link" href="{{route('shop-list')}}">Shop List</a>
             </li>
             <li class="nav-item pr-3 dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -26,7 +26,7 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
-            <a href="{{route('signup')}}" class="btn btn-success" style="position: absolute;right:30px;">SignIn</a>
+            <a href="{{route('login')}}" class="btn btn-success" style="position: absolute;right:30px;">SignIn</a>
         </ul>
     </div>
 </nav>
