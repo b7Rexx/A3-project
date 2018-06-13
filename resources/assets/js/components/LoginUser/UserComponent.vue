@@ -11,7 +11,7 @@
                 <label>Password <i class="fa fa-key"></i> : </label>
                 <input type="password" v-model="logData.password" class="form-control">
                 <br>
-                <div class="alert alert-danger" v-if="login"><i class="fa fa-times"></i>Invalid email or password</div>
+                <div class="alert alert-danger" v-if="loginstat"><i class="fa fa-times"></i>Invalid email or password</div>
 
                 <input type="checkbox" value="true" v-model="logData.remember">
                 <label> <i class="fa fa-comment"></i> Remember SignIn </label>

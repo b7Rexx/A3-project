@@ -30,6 +30,7 @@ $(document).ready(function () {
 //rating
 
 $(document).ready(function () {
+    //rating color
     var i;
     for (i = 1; i < 38; i++) {
         var Item = $('#rate' + i + '> i');
@@ -45,6 +46,8 @@ $(document).ready(function () {
         // Item.eq(radioItem - 1).css({color: 'red'});
         // console.log('NEXT');
     }
+
+    //rating changes
     $(".rate-form").submit(function (e) {
         // return false;
         e.preventDefault();
@@ -69,5 +72,51 @@ $(document).ready(function () {
             });
             return false;
         });
+    });
+
+
+    //rating select
+    $('i[class="fa fa-star"]').click(function () {
+        $(this).children("input[type=radio]").click();
+    });
+});
+
+
+$(document).ready(function () {
+    $('#post-image-button').click(function (e) {
+        e.preventDefault();
+
+        var imageform = "<div class=\"input-group mb-2\" id=\"post-image\">\n" +
+            "    <div class=\"input-group-prepend\">\n" +
+            "        <div class=\"input-group-text\"><i class=\"fa fa-image\"></i></div>\n" +
+            "    </div>\n" +
+            "    <input type=\"file\" name=\"image\" class=\"form-control\" id=\"inlineFormInputGroup\" placeholder=\"image\" multiple>\n" +
+            "</div>\n";
+
+        if (!($('.post-form').hasClass('image-post'))) {
+            $('.post-form').append(imageform);
+            $('.post-form').addClass('image-post');
+            $('.post-form').removeClass('video-post');
+            $('#post-video').remove();
+        }
+    });
+
+    $('#post-video-button').click(function (e) {
+        e.preventDefault();
+         var videoform = "\n" +
+             "<div class=\"input-group mb-2\" id=\"post-video\">\n" +
+             "    <div class=\"input-group-prepend\">\n" +
+             "        <div class=\"input-group-text\"><i class=\"fa fa-video-camera\"></i></div>\n" +
+             "    </div>\n" +
+             "    <input type=\"text\" name=\"video\" class=\"form-control\" id=\"inlineFormInputGroup\" placeholder=\"video URL : separate urls with comma (,)\">\n" +
+             "</div>";
+
+
+        if (!($('.post-form').hasClass('video-post'))) {
+            $('.post-form').append(videoform);
+            $('.post-form').addClass('video-post');
+            $('.post-form').removeClass('image-post');
+            $('#post-image').remove();
+        }
     });
 });

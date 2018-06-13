@@ -15,9 +15,8 @@
 
             </div>
             <div class="col-md-8 order-md-1">
-                <form action="" class="form-group p-3">
-                    <h3>POST</h3>
-                    <input type="text" class="form-control">
+                <form action="{{route('post-shop')}}" method="post" class="post-form form-group p-3 bg-white" enctype="multipart/form-data">
+                    @include('Home.Includes.post')
                 </form>
             </div>
         </div>

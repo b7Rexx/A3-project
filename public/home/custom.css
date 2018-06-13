@@ -31,10 +31,9 @@ header {
     pointer-events: none;
 }
 
-.dropdown-menu{
-    border-top:none;
+.dropdown-menu {
+    border-top: none;
 }
-
 
 footer {
     background: linear-gradient(to right, transparent, transparent, white, white, white, transparent, transparent);
@@ -94,6 +93,10 @@ footer {
     width: 90%;
 }
 
-.fa-star{
-    color:white;
+.fa-star {
+    color: white;
 }
+
+/*#post-image, #post-video {*/
+    /*display: none;*/
+/*}*/

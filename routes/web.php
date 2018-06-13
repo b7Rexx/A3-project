@@ -41,6 +41,7 @@ Route::group(['prefix' => 'shop'], function () {
         Route::post('item/addItem', 'ShopController@addItem');
         Route::post('item/addImage', 'ShopController@addImage');
         Route::get('/itemShopList', 'ShopController@itemShopList');
+        Route::post('post','ShopController@post')->name('post-shop');
     });
 });
 
@@ -58,6 +59,8 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('/id/image', 'UserController@profileImageUpload');
         Route::get('/', 'UserController@LoggedProfile')->name('user-profile');
         Route::post('/api/rate', 'UserController@rate');
+        Route::post('post','UserController@post')->name('post-user');
+
     });
 });
 

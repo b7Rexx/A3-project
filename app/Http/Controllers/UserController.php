@@ -136,4 +136,13 @@ class UserController extends Controller
         return response(['message' => false]);
     }
 
+    public function post(Request $request)
+    {
+        var_dump($request->title);
+        var_dump($request->description);
+        var_dump($request->image);
+        var_dump($request->video);
+        die;
+    }
+
 }
