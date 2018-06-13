@@ -7,10 +7,10 @@ use App\Main;
 use App\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ShopController extends Controller
 {
-
     private $_path = 'Home.shop.';
     private $_data = [];
 
@@ -43,6 +43,40 @@ class ShopController extends Controller
     {
         Auth::guard('shop')->logout();
         return redirect(route('home'));
+    }
+
+
+    public function signup()
+    {
+        if (Auth::guard('shop')->check()) {
+            return redirect(route('shop-profile'));
+        }
+        return view($this->_path . 'signup', $this->_data);
+    }
+
+    public function register(Request $request)
+    {
+        $this->validate($request, ['password' => 'confirmed']);
+
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+        $data['password'] = bcrypt($request->password);
+
+        if ($last_insert_id = Shop::create($data)->id) {
+            return response(['status' => true, 'last_insert_id' => $last_insert_id]);
+        }
+
+        return response(['status' => false]);
+    }
+
+    public function registerSecond(Request $request)
+    {
+        $data['phone'] = $request->phone;
+        $data['bio'] = $request->bio;
+        $data['address'] = $request->address;
+
+        Shop::find($request->id)->update($data);
+        return response(['id' => $request->id]);
     }
 
 
@@ -83,6 +117,10 @@ class ShopController extends Controller
             $destinationPath = public_path('/images/shop/profile/');
             if ($image->move($destinationPath, $name)) {
                 $data['image'] = $name;
+                $old_image = 'images/shop/profile/' . Shop::find($this->_data['shop_id'])->image;
+                if (File::exists($old_image)) {
+                    File::delete($old_image);
+                }
                 Shop::find($this->_data['shop_id'])->update($data);
                 return redirect()->back()->with(['success' => 'Image uploaded successfully']);
             };
@@ -135,6 +173,9 @@ class ShopController extends Controller
         $this->_data['shop_id'] = Auth::user()->id;
         $id = $this->_data['shop_id'];
         $data = Item::where('shop_id', '=', $id)->orderBy('id', 'DESC')->get();
+//        $shop = Shop::find($id)->name;
+
         return response($data);
+//        return response(['data' => $data, 'shop' => $shop,'shop_id' => $id]);
     }
 }

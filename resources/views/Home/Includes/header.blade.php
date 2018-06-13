@@ -21,9 +21,9 @@
                 <a href="#"><i class="fa fa-envelope pl-3"></i> bij.maharjan@gmail.com</a>
             </div>
             <div class="col-sm-4 text-right">
-                <a href=""><i class="fa fa-facebook fa-2x pr-3"></i></a>
-                <a href=""><i class="fa fa-twitter fa-2x pr-3"></i></a>
-                <a href=""><i class="fa fa-youtube fa-2x pr-3"></i></a>
+                <a href=""><i class="fa fa-facebook pr-3"></i></a>
+                <a href=""><i class="fa fa-instagram pr-3"></i></a>
+                <a href=""><i class="fa fa-youtube pr-3"></i></a>
             </div>
         </div>
     </header>

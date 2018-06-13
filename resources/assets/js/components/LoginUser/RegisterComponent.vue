@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="text-center p-3">
-            <h1><i class="fa fa-shopping-cart"></i> Register</h1>
+            <h1><i class="fa fa-user"></i> Register</h1>
         </div>
         <div class="p-5">
             <form v-on:submit.prevent="registerFirst()">
@@ -36,11 +36,11 @@
         },
         methods: {
             registerFirst() {
-                axios.post(server._url + '/shop/signup/register', this.regData).then((response) => {
+                axios.post(server._url + '/user/signup/register', this.regData).then((response) => {
                     let last_insert_id = response.data.last_insert_id;
                     let status = response.data.status;
                     if (status === true) {
-                        window.location.replace(server._url + '/shop/signup/register/' + last_insert_id);
+                        window.location.replace(server._url + '/user/signup/register/' + last_insert_id);
                     } else {
                         console.log(response);
                         alert('failed');

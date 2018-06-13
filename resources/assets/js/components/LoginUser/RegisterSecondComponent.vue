@@ -31,8 +31,8 @@
         },
         methods: {
             registerSecond() {
-                axios.post(server._url + '/shop/signup/registerSecond', this.regData).then((response) => {
-                    window.location.replace(this.link + '/shop/id/' + response.data.id);
+                axios.post(server._url + '/user/signup/registerSecond', this.regData).then((response) => {
+                    window.location.replace(this.link + '/user/id/' + response.data.id);
                 });
             },
             goHome() {

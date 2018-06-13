@@ -22,6 +22,20 @@ header {
     font-size: 16px;
 }
 
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown > .dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+
+.dropdown-menu{
+    border-top:none;
+}
+
+
 footer {
     background: linear-gradient(to right, transparent, transparent, white, white, white, transparent, transparent);
 }
@@ -39,7 +53,7 @@ footer {
 
 .bg-items {
     background-color: rgba(180, 220, 225, 0.6);
-    border:6px solid rgba(255, 255, 255, 0.5);
+    border: 6px solid rgba(255, 255, 255, 0.5);
 }
 
 .carousel img {
@@ -49,7 +63,7 @@ footer {
 
 .carousel-indicators > li {
     width: 100%;
-    height: 10px;
+    height: 5px;
 }
 
 .profile-image > img {
@@ -71,6 +85,15 @@ footer {
 
 .index-items > img {
     max-height: 120px;
-    width: 120px;
-    border-radius: 30px;
+    width: 160px;
+    /*border-radius: 30px;*/
+}
+
+.index-carousel img {
+    max-height: 200px;
+    width: 90%;
+}
+
+.fa-star{
+    color:white;
 }

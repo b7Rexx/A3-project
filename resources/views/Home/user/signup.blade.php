@@ -8,8 +8,12 @@
     <div class="bg-content">
         <div class="row">
             <div class="col-md-6 order-md-2">
-                <div id="signup">
+                <div id="signupuser">
                     <router-view></router-view>
+                </div>
+
+                <div class="text-center">
+                    <a href="{{route('login')}}"><i class="fa fa-shopping-cart fa-3x"></i> <h3> Sign in to Shop</h3></a>
                 </div>
             </div>
             <div class="col-md-6 order-md-1 text-center">
@@ -29,5 +33,5 @@
             _token: '{{csrf_token()}}'
         };
     </script>
-    <script src="{{URL::to('js/vuelogin.js')}}"></script>
+    <script src="{{URL::to('js/vueloginuser.js')}}"></script>
 @endsection

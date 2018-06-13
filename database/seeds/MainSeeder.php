@@ -22,5 +22,13 @@ class MainSeeder extends Seeder
         DB::table('categories')->insert(['name' => 'Decoration']);
         DB::table('categories')->insert(['name' => 'Medicine']);
         DB::table('categories')->insert(['name' => 'Others']);
+
+        for ($i = 0; $i < 38; $i++) {
+            $rr = rand(1, 5);
+            $ri = rand(25, 37);
+            DB::table('ratings')->insert(['user_id' => '3', 'item_id' => $ri, 'rate' => $rr]);
+        }
+
     }
+
 }

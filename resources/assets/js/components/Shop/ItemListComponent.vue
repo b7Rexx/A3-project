@@ -11,6 +11,7 @@
                 </div>
                 <hr>
                 <div class="text-right">Rs. {{item.price}}</div>
+                <!--<a v-bind:href="shop.id">{{shop.name}}</a>-->
             </div>
         </div>
     </div>
@@ -21,6 +22,10 @@
         data() {
             return {
                 itemList: '',
+                // shop: {
+                //     id: '',
+                //     name: ''
+                // },
                 imagelink: server._url + '/images/shop/item/'
             }
         },
@@ -28,7 +33,10 @@
             itemShopList() {
                 axios.get(server._url + '/shop/itemShopList').then((response) => {
                     this.itemList = response.data;
+                    // this.shop.id = '/id/' + response.data.shop_id;
+                    // this.shop.name = response.data.shop;
                     console.log(this.itemList);
+                    // console.log(this.shop);
                 });
             }
         },
@@ -43,7 +51,7 @@
         },
         filters: {
             strlimit: function (value) {
-                return value.slice(0, 18) + '...';
+                return value.slice(0, 18);
             }
         }
     }

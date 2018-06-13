@@ -4,13 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use App\Main;
-use App\Shop;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class ItemController extends Controller
 {
-
     private $_path = 'Home.pages.';
     private $_data = [];
 
@@ -24,15 +21,9 @@ class HomeController extends Controller
         $this->_data['mains'] = $array;
     }
 
-    public function index()
+    public function browse()
     {
-        $this->_data['items'] = Item::orderBy('id', 'DESC')->paginate(12);
-        return view($this->_path . 'index', $this->_data);
-    }
-
-    public function shopList()
-    {
-        $this->_data['shops'] = Shop::paginate(6);
-        return view($this->_path . 'shop-list', $this->_data);
+        $this->_data['items'] = Item::orderBy('name')->paginate(16);
+        return view($this->_path . 'browse-item', $this->_data);
     }
 }

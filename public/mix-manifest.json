@@ -2,6 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/gentelella.css": "/css/gentelella.css",
+    "/js/vueloginuser.js": "/js/vueloginuser.js",
     "/js/vuelogin.js": "/js/vuelogin.js",
     "/js/vueshop.js": "/js/vueshop.js"
 }

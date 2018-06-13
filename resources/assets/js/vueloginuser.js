@@ -3,21 +3,21 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
-import ShopComponent from './components/Login/ShopComponent.vue';
-import RegisterComponent from './components/Login/RegisterComponent.vue';
-import RegisterSecondComponent from './components/Login/RegisterSecondComponent.vue';
+import UserComponent from './components/LoginUser/UserComponent.vue';
+import RegisterComponent from './components/LoginUser/RegisterComponent.vue';
+import RegisterSecondComponent from './components/LoginUser/RegisterSecondComponent.vue';
 
-Vue.component('ShopComponent', ShopComponent);
+Vue.component('UserComponent', UserComponent);
 Vue.component('RegisterComponent', RegisterComponent);
 Vue.component('RegisterSecondComponent', RegisterSecondComponent);
 
 const router = new VueRouter({
     mode: 'history',
-    base: '/shop/signup',
+    base: '/user/signup',
     routes: [
         {
             path: '/',
-            component: ShopComponent,
+            component: UserComponent,
         },
         {
             path: '/register',
@@ -31,7 +31,7 @@ const router = new VueRouter({
 });
 
 
-const signup = new Vue({
+const signupuser = new Vue({
     router,
-    el: '#signup'
+    el: '#signupuser'
 });

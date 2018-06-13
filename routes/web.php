@@ -21,25 +21,50 @@ Route::group(['prefix' => '@dmin'], function () {
 
 //Frontend home routes
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/signup/{route?}/{id?}', 'HomeController@signup')->name('login');
-Route::post('/signup/register', 'HomeController@register');
-Route::post('/signup/registerSecond', 'HomeController@registerSecond');
 Route::get('/list/shop', 'HomeController@shopList')->name('shop-list');
 
 
 //Shop routes
-Route::post('api/shop/login', 'ShopController@loginAction')->name('shop-login-action');
-Route::get('/shop/logout','ShopController@logout')->name('shop-logout');
+Route::group(['prefix' => 'shop'], function () {
 
-Route::group(['prefix' => 'shop', 'middleware' => 'auth:shop'], function () {
-    Route::get('/id/{id}', 'ShopController@profile')->where(['id' => '[0-9]+']);
-    Route::get('/', 'ShopController@LoggedProfile')->name('shop-profile');
-    Route::get('/items/{route?}', 'ShopController@shopItems')->name('shop-items');
-    Route::post('/id/image', 'ShopController@profileImageUpload')->name('shop-profile-image-upload');
-    Route::post('item/addItem', 'ShopController@addItem');
-    Route::post('item/addImage', 'ShopController@addImage');
-    Route::get('/itemShopList', 'ShopController@itemShopList');
+    Route::get('/signup/{route?}/{id?}', 'ShopController@signup')->name('login');
+    Route::post('/signup/register', 'ShopController@register');
+    Route::post('/signup/registerSecond', 'ShopController@registerSecond');
+    Route::post('api/login', 'ShopController@loginAction')->name('shop-login-action');
+    Route::get('/logout', 'ShopController@logout')->name('shop-logout');
 
+    Route::group(['middleware' => 'auth:shop'], function () {
+        Route::get('/id/{id}', 'ShopController@profile')->where(['id' => '[0-9]+']);
+        Route::get('/', 'ShopController@LoggedProfile')->name('shop-profile');
+        Route::get('/items/{route?}', 'ShopController@shopItems')->name('shop-items');
+        Route::post('/id/image', 'ShopController@profileImageUpload')->name('shop-profile-image-upload');
+        Route::post('item/addItem', 'ShopController@addItem');
+        Route::post('item/addImage', 'ShopController@addImage');
+        Route::get('/itemShopList', 'ShopController@itemShopList');
+    });
+});
+
+//user routes
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/signup/{route?}/{id?}', 'UserController@signup')->name('user-signup');
+    Route::post('/signup/register', 'UserController@register');
+    Route::post('/signup/registerSecond', 'UserController@registerSecond');
+    Route::post('api/login', 'UserController@loginAction');
+    Route::get('/logout', 'UserController@logout');
+
+    Route::group(['middleware' => 'auth:user'], function () {
+
+        Route::get('/id/{id}', 'UserController@profile')->where(['id' => '[0-9]+']);
+        Route::post('/id/image', 'UserController@profileImageUpload');
+        Route::get('/', 'UserController@LoggedProfile')->name('user-profile');
+        Route::post('/api/rate', 'UserController@rate');
+    });
+});
+
+
+//item routes
+Route::group(['prefix' => 'item'], function () {
+    Route::get('browse', 'ItemController@browse')->name('browse-item');
 });
 
 

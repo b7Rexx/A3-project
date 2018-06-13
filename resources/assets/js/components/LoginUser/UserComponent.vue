@@ -1,6 +1,6 @@
 <template>
     <div class="p-5 text-center">
-        <h2><i class="fa fa-shopping-cart fa-2x"></i>&nbsp;&nbsp;&nbsp; Sign In to Shop</h2>
+        <h2><i class="fa fa-user fa-2x"></i>&nbsp;&nbsp;&nbsp; Sign In to User</h2>
         <a class="p-2">Don't have an account? Register
             <router-link to="/register">Here !</router-link>
         </a>
@@ -11,8 +11,7 @@
                 <label>Password <i class="fa fa-key"></i> : </label>
                 <input type="password" v-model="logData.password" class="form-control">
                 <br>
-
-                <div class="alert alert-danger" v-if="loginstat"><i class="fa fa-times"></i>Invalid email or password</div>
+                <div class="alert alert-danger" v-if="login"><i class="fa fa-times"></i>Invalid email or password</div>
 
                 <input type="checkbox" value="true" v-model="logData.remember">
                 <label> <i class="fa fa-comment"></i> Remember SignIn </label>
@@ -34,16 +33,16 @@
                     remember: '',
                     token: server._token,
                 },
-                loginstat: false
+                loginstat:false
             }
         },
         methods: {
             login() {
-                axios.post(server._url + '/shop/api/login', this.logData).then((response) => {
+                axios.post(server._url + '/user/api/login', this.logData).then((response) => {
                     console.log(response);
                     let stat = response.data.status;
                     if (stat === true) {
-                        window.location.replace(server._url + '/shop');
+                        window.location.replace(server._url + '/user');
                     } else {
                         let loginstatus = this;
                         this.loginstat = true;

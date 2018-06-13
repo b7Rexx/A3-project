@@ -31,7 +31,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" ><i class="fa fa-cogs"> Settings</i></a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Edit Profile</a>
-                    <a href="{{route('shop-logout')}}" class="dropdown-item">Logout</a>
+                    <a href="{{url('user/logout')}}" class="dropdown-item">Logout</a>
                 </div>
             </div>
         </ul>
