@@ -12670,7 +12670,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             itemList: '',
             // shop: {
-            //     id: '',
+            id: '',
             //     name: ''
             // },
             imagelink: server._url + '/images/shop/item/'
@@ -12681,7 +12681,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         itemShopList: function itemShopList() {
             var _this = this;
 
-            axios.get(server._url + '/shop/itemShopList').then(function (response) {
+            axios.get(server._url + '/shop/itemShopList/' + this.id).then(function (response) {
                 _this.itemList = response.data;
                 // this.shop.id = '/id/' + response.data.shop_id;
                 // this.shop.name = response.data.shop;

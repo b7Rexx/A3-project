@@ -68,17 +68,16 @@ $(document).ready(function () {
                     setTimeout(function () {
                         $('.rate-message').remove();
                     }, 3000)
+                },
+                error:function () {
+                    alert('Login required');
                 }
+
             });
             return false;
         });
     });
 
-
-    //rating select
-    $('i[class="fa fa-star"]').click(function () {
-        $(this).children("input[type=radio]").click();
-    });
 });
 
 

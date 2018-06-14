@@ -84,13 +84,19 @@ class UserController extends Controller
     {
         if (empty($id)) return redirect()->to(route('user-signup'));
 
+        if (Auth::guard('user')->user()) {
+            if ($id == Auth::guard('user')->user()->id) {
+                return redirect(route('user-profile'));
+            }
+        }
+
         $this->_data['user'] = User::find($id);
-        return view($this->_path . 'user-profile', $this->_data);
+        return view($this->_path . 'user-guest', $this->_data);
     }
 
     public function LoggedProfile()
     {
-        $this->_data['user_id'] = Auth::user()->id;
+        $this->_data['user_id'] = Auth::guard('user')->user()->id;
         if (empty($this->_data['user_id'])) return redirect()->to(route('home'));
         $id = $this->_data['user_id'];
         $this->_data['user'] = User::find($id);
@@ -100,7 +106,7 @@ class UserController extends Controller
 
     public function profileImageUpload(Request $request)
     {
-        $this->_data['user_id'] = Auth::user()->id;
+        $this->_data['user_id'] = Auth::guard('user')->user()->id;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -122,7 +128,7 @@ class UserController extends Controller
 
     public function rate(Request $request)
     {
-        $data['user_id'] = Auth::user()->id;
+        $data['user_id'] = Auth::guard('user')->user()->id;
         $data['item_id'] = $request->id;
         $data['rate'] = $request->value;
 

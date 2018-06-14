@@ -15,10 +15,10 @@
                    data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Listings
-                 </a>
+                </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{route('shop-list')}}">Shops</a>
-                    <a class="dropdown-item" href="#">Users</a>
+                    <a class="dropdown-item" href="{{route('user-list')}}">Users</a>
                     {{--<div class="dropdown-divider"></div>--}}
                     {{--<a class="dropdown-item" href="#">Something else here</a>--}}
                 </div>
@@ -40,5 +40,27 @@
                 <a class="nav-link" href="#">Feedback</a>
             </li>
         </ul>
+        <?php
+        use Illuminate\Support\Facades\Auth;
+        $logShop = Auth::guard('shop')->user();
+        $logUser = Auth::guard('user')->user();
+        ?>
+        <div class="btn-circle">
+            <a class="btn btn-lg" href="{{route('user-signup')}}">
+                @if($logUser)
+                    <img title="{{$logUser->name}}" src="{{url('images/user/profile/'.$logUser->image)}}" alt="">
+                @else
+                    <img src="{{url('images/U.jpg')}}" alt="">
+                @endif
+            </a>
+            <a class="btn btn-lg" href="{{route('login')}}">
+                @if($logShop)
+                    <img title="{{$logShop->name}}" src="{{url('images/shop/profile/'.$logShop->image)}}" alt="">
+                @else
+                    <img src="{{url('images/S.jpg')}}" alt="">
+                @endif
+            </a>
+        </div>
+
     </div>
 </nav>

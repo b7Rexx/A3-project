@@ -23,7 +23,7 @@
             return {
                 itemList: '',
                 // shop: {
-                //     id: '',
+                id: '',
                 //     name: ''
                 // },
                 imagelink: server._url + '/images/shop/item/'
@@ -31,7 +31,7 @@
         },
         methods: {
             itemShopList() {
-                axios.get(server._url + '/shop/itemShopList').then((response) => {
+                axios.get(server._url + '/shop/itemShopList/' + this.id).then((response) => {
                     this.itemList = response.data;
                     // this.shop.id = '/id/' + response.data.shop_id;
                     // this.shop.name = response.data.shop;

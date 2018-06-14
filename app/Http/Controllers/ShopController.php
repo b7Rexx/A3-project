@@ -84,14 +84,21 @@ class ShopController extends Controller
     {
         if (empty($id)) return redirect()->to(route('login'));
 
+        if (Auth::guard('shop')->user()) {
+            if ($id == Auth::guard('shop')->user()->id) {
+                return redirect(route('shop-profile'));
+            }
+        }
+
         $this->_data['shop'] = Shop::find($id);
-        return view($this->_path . 'shop-profile', $this->_data);
+        $this->_data['shop_id'] = $id;
+        return view($this->_path . 'shop-guest', $this->_data);
     }
 
     public function LoggedProfile()
     {
-        $this->_data['shop_id'] = Auth::user()->id;
-        if (empty($this->_data['shop_id'])) return redirect()->to(route('home'));
+        $this->_data['shop_id'] = Auth::guard('shop')->user()->id;
+        if (empty($this->_data['shop_id'])) return redirectx()->to(route('home'));
         $id = $this->_data['shop_id'];
         $this->_data['shop'] = Shop::find($id);
         return view($this->_path . 'shop-profile', $this->_data);
@@ -99,17 +106,17 @@ class ShopController extends Controller
 
     public function shopItems()
     {
-        $this->_data['shop_id'] = Auth::user()->id;
+        $this->_data['shop_id'] = Auth::guard('shop')->user()->id;
         if (empty($this->_data['shop_id'])) return redirect()->to(route('home'));
 
         $id = $this->_data['shop_id'];
         $this->_data['shop'] = Shop::find($id);
-        return view($this->_path . 'shop-items', $this->_data);
+        return view($this->_path . 'shop-profile', $this->_data);
     }
 
     public function profileImageUpload(Request $request)
     {
-        $this->_data['shop_id'] = Auth::user()->id;
+        $this->_data['shop_id'] = Auth::guard('shop')->user()->id;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -170,7 +177,7 @@ class ShopController extends Controller
 
     public function itemShopList()
     {
-        $this->_data['shop_id'] = Auth::user()->id;
+        $this->_data['shop_id'] = Auth::guard('shop')->user()->id;
         $id = $this->_data['shop_id'];
         $data = Item::where('shop_id', '=', $id)->orderBy('id', 'DESC')->get();
 //        $shop = Shop::find($id)->name;

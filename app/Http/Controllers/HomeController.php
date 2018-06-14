@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Item;
 use App\Main;
 use App\Shop;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,13 +27,21 @@ class HomeController extends Controller
 
     public function index()
     {
+        $this->_data['shops'] = Shop::inRandomOrder()->get()->take(2);
         $this->_data['items'] = Item::orderBy('id', 'DESC')->paginate(12);
         return view($this->_path . 'index', $this->_data);
     }
 
     public function shopList()
     {
-        $this->_data['shops'] = Shop::paginate(6);
+        $this->_data['shops'] = Shop::orderBy('name', 'ASC')->paginate(6);
         return view($this->_path . 'shop-list', $this->_data);
     }
+
+    public function userList()
+    {
+        $this->_data['users'] = User::orderBy('name', 'ASC')->paginate(6);
+        return view($this->_path . 'user-list', $this->_data);
+    }
+
 }

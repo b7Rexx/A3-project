@@ -89,14 +89,38 @@ footer {
 }
 
 .index-carousel img {
-    max-height: 200px;
-    width: 90%;
+    max-height: 380px;
 }
 
 .fa-star {
     color: white;
 }
 
-/*#post-image, #post-video {*/
-    /*display: none;*/
-/*}*/
+.list img {
+    width: 100%;
+    max-height: 140px;
+}
+
+.mid-home {
+    padding: 10px 100px 10px 100px;
+}
+
+.mid-home img {
+    width: 280px;
+}
+
+.btn-circle {
+    position: absolute;
+    right: 10px;
+}
+
+.btn-circle a {
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.btn-circle img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}

@@ -13472,7 +13472,7 @@ a.text-dark:focus {
 }
 
 *:not(i) {
-  color: black;
+  color: #480032;
 }
 
 .row {
@@ -13488,7 +13488,7 @@ a.text-dark:focus {
 }
 
 a {
-  color: #480032;
+  color: #005792;
 }
 
 a:hover {

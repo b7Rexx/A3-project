@@ -9,7 +9,8 @@
         <div class="row">
             <div class="col-md-4 order-md-2">
                 <div class="p-4">
-                    @include('Home.Includes.user-profile-image')
+                    @include('Home.Includes.user-nav')
+                    @include('Home.Includes.user-profile')
                 </div>
 
 

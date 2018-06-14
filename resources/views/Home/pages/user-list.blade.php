@@ -1,7 +1,7 @@
 @extends('Home.homeMaster')
 
 @section('title')
-    A3 - Shops
+    A3 - Users
 @endsection
 
 @section('body')
@@ -17,31 +17,31 @@
         </div>
         <br>
         <div class="row list">
-            @forelse($shops as $shop)
+            @forelse($users as $user)
                 <div class="col-md-6 p-3">
                     <div class="row bg-white p-2">
                         <div class="col-sm-4 order-sm-2">
-                            <img src="{{url('images/shop/profile/'.$shop->image)}}" alt="Image" style="height: 240px">
+                            <img src="{{url('images/user/profile/'.$user->image)}}" alt="Image" style="height: 240px">
                         </div>
                         <div class="col-sm-8 order-sm-1">
-                            <a href="{{url('shop/id/'.$shop->id)}}">
-                                <h4 title="{{$shop->name}}">{{str_limit($shop->name,30)}}</h4>
+                            <a href="{{url('user/id/'.$user->id)}}">
+                                <h4 title="{{$user->name}}">{{str_limit($user->name,30)}}</h4>
                             </a>
-                            <a href="#"> <i class="fa fa-envelope"></i> {{$shop->email}}</a>
-                            &nbsp;&nbsp;&nbsp; <i class="fa fa-phone"></i> {{$shop->phone}}
+                                <a href="#"> <i class="fa fa-envelope"></i> {{$user->email}}</a>
+                            &nbsp;&nbsp;&nbsp;<i class="fa fa-phone"></i> {{$user->phone}}
                             <br>
-                            <i class="fa fa-map-marker"></i> {{$shop->address}}
+                            <i class="fa fa-map-marker"></i> {{$user->address}}
                         </div>
                     </div>
                 </div>
             @empty
-                No shop available
+                No user available
             @endforelse
         </div>
         <div class="row bg-white">
             <br>
             <hr>
-            {{$shops->links()}}
+            {{$users->links()}}
 
         </div>
     </div>
