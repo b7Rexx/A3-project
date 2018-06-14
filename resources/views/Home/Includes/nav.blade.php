@@ -39,28 +39,27 @@
             <li class="nav-item pr-3">
                 <a class="nav-link" href="#">Feedback</a>
             </li>
+            <?php
+            use Illuminate\Support\Facades\Auth;
+            $logShop = Auth::guard('shop')->user();
+            $logUser = Auth::guard('user')->user();
+            ?>
+            <div class="btn-circle">
+                <a class="btn btn-lg" href="{{route('user-signup')}}">
+                    @if($logUser)
+                        <img title="{{$logUser->name}}" src="{{url('images/user/profile/'.$logUser->image)}}" alt="">
+                    @else
+                        <img src="{{url('images/U.jpg')}}" alt="">
+                    @endif
+                </a>
+                <a class="btn btn-lg" href="{{route('login')}}">
+                    @if($logShop)
+                        <img title="{{$logShop->name}}" src="{{url('images/shop/profile/'.$logShop->image)}}" alt="">
+                    @else
+                        <img src="{{url('images/S.jpg')}}" alt="">
+                    @endif
+                </a>
+            </div>
         </ul>
-        <?php
-        use Illuminate\Support\Facades\Auth;
-        $logShop = Auth::guard('shop')->user();
-        $logUser = Auth::guard('user')->user();
-        ?>
-        <div class="btn-circle">
-            <a class="btn btn-lg" href="{{route('user-signup')}}">
-                @if($logUser)
-                    <img title="{{$logUser->name}}" src="{{url('images/user/profile/'.$logUser->image)}}" alt="">
-                @else
-                    <img src="{{url('images/U.jpg')}}" alt="">
-                @endif
-            </a>
-            <a class="btn btn-lg" href="{{route('login')}}">
-                @if($logShop)
-                    <img title="{{$logShop->name}}" src="{{url('images/shop/profile/'.$logShop->image)}}" alt="">
-                @else
-                    <img src="{{url('images/S.jpg')}}" alt="">
-                @endif
-            </a>
-        </div>
-
     </div>
 </nav>

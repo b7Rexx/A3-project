@@ -17,7 +17,7 @@ class CreatePostimagesTable extends Migration
             $table->increments('id');
             $table->integer('post_id')->unsigned();
             $table->string('image');
-            $table->text('caption');
+            $table->text('caption')->nullable();
             $table->foreign('post_id')->references('id')->on('posts')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

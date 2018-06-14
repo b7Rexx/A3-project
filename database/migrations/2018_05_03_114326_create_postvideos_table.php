@@ -17,7 +17,7 @@ class CreatePostvideosTable extends Migration
             $table->increments('id');
             $table->integer('post_id')->unsigned();
             $table->string('video');
-            $table->text('caption');
+            $table->text('caption')->nullable();
             $table->foreign('post_id')->references('id')->on('posts')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Main;
+use App\Post;
+use App\PostImages;
+use App\PostVideos;
 use App\Rating;
 use App\User;
 use Illuminate\Http\Request;
@@ -144,11 +147,37 @@ class UserController extends Controller
 
     public function post(Request $request)
     {
-        var_dump($request->title);
-        var_dump($request->description);
-        var_dump($request->image);
-        var_dump($request->video);
-        die;
+        $data['user_id'] = Auth::guard('user')->user()->id;
+        $data['title'] = $request->title;
+        $data['detail'] = $request->description;
+        if ($last_id = Post::create($data)->id) {
+            if ($request->image) {
+                if ($request->hasFile('image')) {
+                    foreach ($request->file('image') as $image) {
+                        $name = $last_id . '_' . hash('md5', time() + rand(1, 100)) . '.' . $image->getClientOriginalExtension();
+                        $destinationPath = public_path('/images/user/post/');
+                        if ($image->move($destinationPath, $name)) {
+                            $postImage['post_id'] = $last_id;
+                            PostImages::create($postImage);
+                        }
+                    }
+                }
+                return redirect(route('user-profile'))->with(['success' => 'post updated with image']);
+            }
+            if ($request->video) {
+                $postVideo['post_id'] = $last_id;
+
+                $video = explode(',', $request->video);
+                foreach ($video as $url) {
+                    $postVideo['video'] = $url;
+                    PostVideos::create($postVideo);
+                }
+                return redirect(route('user-profile'))->with(['success' => 'post updated with video']);
+
+            }
+            return redirect(route('user-profile'))->with(['success' => 'post updated']);
+        }
+        return redirect(route('user-profile'))->with(['fail' => 'post failed']);
     }
 
 }

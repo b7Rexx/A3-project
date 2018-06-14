@@ -186,8 +186,4 @@ class ShopController extends Controller
 //        return response(['data' => $data, 'shop' => $shop,'shop_id' => $id]);
     }
 
-    public function post(Request $request)
-    {
-        return redirect(route('home'));
-    }
 }

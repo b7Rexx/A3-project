@@ -23,11 +23,9 @@ class MainSeeder extends Seeder
         DB::table('categories')->insert(['name' => 'Medicine']);
         DB::table('categories')->insert(['name' => 'Others']);
 
-        for ($i = 0; $i < 38; $i++) {
-            $rr = rand(1, 5);
-            $ri = rand(25, 37);
-            DB::table('ratings')->insert(['user_id' => '3', 'item_id' => $ri, 'rate' => $rr]);
-        }
+        //admin seed
+        DB::table('users')->insert(['name'=>'admin','email'=>'admin@admin.com','password'=>bcrypt('admin'),'address'=>'test,testing,tested','phone'=>987654321,'bio'=>'Quibusdam sed consequatur nisi ipsam doloribus quasi exercitationem ducimus dolore']);
+        DB::table('shops')->insert(['name'=>'admin','email'=>'admin@admin.com','password'=>bcrypt('admin'),'address'=>'test,testing,tested','phone'=>987654321,'bio'=>'Quibusdam sed consequatur nisi ipsam doloribus quasi exercitationem ducimus dolore']);
 
     }
 

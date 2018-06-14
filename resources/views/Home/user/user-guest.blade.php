@@ -1,4 +1,4 @@
-@extends('Home.userMaster')
+@extends('Home.Master')
 
 @section('title')
     A3 - User-Guest
@@ -7,11 +7,9 @@
 @section('body')
     <div class="bg-content shop-profile">
         <div class="row">
-            <div class="col-md-4 order-md-2">
-                <div class="p-4">
+            <div class="col-md-4 order-md-2 p-1">
                     @include('Home.Includes.user-guest')
                 <h1>Gallery</h1>
-                </div>
             </div>
             <div class="col-md-8 order-md-1">
                 {{--<form action="{{route('post-user')}}" method="post" class="post-form form-group p-3 bg-white" enctype="multipart/form-data">--}}

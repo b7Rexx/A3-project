@@ -1,5 +1,4 @@
 <div class="border p-1 profile-image text-center" style="position: relative">
-    @include('Home.Includes.message')
     <h3 title="{{$user->name}}"> {{str_limit($user->name,25)}}</h3>
     <img src="{{URL::to('images/user/profile/'.$user->image)}}" alt="NoImage">
     <a id="image-button" style="position:absolute;bottom: 0;right: 0;background: white;opacity: 0.3;" class="p-2"><i class="fa fa-camera"></i> Update

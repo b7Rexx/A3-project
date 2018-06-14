@@ -1,4 +1,4 @@
-@extends('Home.homeMaster')
+@extends('Home.Master')
 
 @section('title')
     A3 - All About Aqua
@@ -14,37 +14,43 @@
             <br>
         </div>
         <div class="row">
-            <div class="index-carousel col-md-6" data-aos="fade-right">
+            <div class="index-carousel col-lg-7 col-md-6" data-aos="fade-right">
                 @include('Home.Includes.carousel')
             </div>
-            <div class="col-sm-8 col-md-4 p-2 home-shops">
-                @forelse($shops as $shop)
-                    <div class="row border">
-                        <div class="col-sm-4 order-sm-2">
-                            <img src="{{url('images/shop/profile'.$shop->image)}}" alt="Image" style="height: 240px">
-                        </div>
-                        <div class="col-sm-8 order-sm-1">
-                            <h4 title="{{$shop->name}}">{{str_limit($shop->name,30)}}</h4>
-                            <a href="#"> <i class="fa fa-envelope"></i> {{$shop->email}}</a>
-                            <br> <i class="fa fa-phone"></i> {{$shop->phone}}
+            <div class="col-lg-5 col-md-6 p-2 home-shops">
+                <div class="row">
+                    <div class="col-sm-8">
+                        @forelse($shops as $shop)
+                            <div class="row border">
+                                <div class="col-sm-5 order-sm-2 p-1">
+                                    <img src="{{url('images/shop/profile/'.$shop->image)}}" alt="Image"
+                                         style="height: 120px;width:100px">
+                                </div>
+                                <div class="col-sm-7 order-sm-1">
+                                    <h4 title="{{$shop->name}}">{{str_limit($shop->name,30)}}</h4>
+                                    <a href="#"> <i class="fa fa-envelope"></i> {{$shop->email}}</a>
+                                    <br> <i class="fa fa-phone"></i> {{$shop->phone}}
+                                    <br>
+                                    <i class="fa fa-map-marker"></i> {{$shop->address}}
+                                </div>
+                            </div>
                             <br>
-                            <i class="fa fa-map-marker"></i> {{$shop->address}}
-                        </div>
+                        @empty
+                            No available shops.
+                        @endforelse
                     </div>
-                    <br>
-                @empty
-                    No available shops.
-                @endforelse
-            </div>
-            <div class="col-sm-4 col-md-2">
-                <h2>Forum</h2>
+                    <div class="col-sm-4">
+                        <h2>Forum</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aut cumque, deleniti ea enim id
-                    vero, voluptatem?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aperiam assumenda consequuntur
-                    tenetur ullam voluptatum?</p>
+                        <p class="border">Lorem ipsum dolor sit amet, consectetur adip
+                            vero, voluptatem?</p>
+                        <p class="border">Lorem ipsum dolor sit amet, consectetur adip
+                            tenetur ullam voluptatum?</p>
+                    </div>
+                </div>
             </div>
         </div>
+
         <hr>
         <div class="row">
             <div class="col-sm-6 text-center mid-home">

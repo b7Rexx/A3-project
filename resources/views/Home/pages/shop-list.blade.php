@@ -1,4 +1,4 @@
-@extends('Home.homeMaster')
+@extends('Home.Master')
 
 @section('title')
     A3 - Shops

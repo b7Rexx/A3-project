@@ -89,7 +89,7 @@ $(document).ready(function () {
             "    <div class=\"input-group-prepend\">\n" +
             "        <div class=\"input-group-text\"><i class=\"fa fa-image\"></i></div>\n" +
             "    </div>\n" +
-            "    <input type=\"file\" name=\"image\" class=\"form-control\" id=\"inlineFormInputGroup\" placeholder=\"image\" multiple>\n" +
+            "    <input type=\"file\" name=\"image[]\" class=\"form-control\" id=\"inlineFormInputGroup\" placeholder=\"image\" multiple>\n" +
             "</div>\n";
 
         if (!($('.post-form').hasClass('image-post'))) {

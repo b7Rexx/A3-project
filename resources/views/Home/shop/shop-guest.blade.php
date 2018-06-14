@@ -1,4 +1,4 @@
-@extends('Home.shopMaster')
+@extends('Home.Master')
 
 @section('title')
     A3 - Shop-Guest
@@ -7,11 +7,9 @@
 @section('body')
     <div class="bg-content shop-profile">
         <div class="row">
-            <div class="col-md-4 order-md-2">
-                <div class="p-4">
+            <div class="col-md-4 order-md-2 p-1">
                     @include('Home.Includes.profile-guest')
                     <h1>Gallery</h1>
-                </div>
             </div>
             <div class="col-md-8 order-md-1">
 <h1>GUEST</h1>
