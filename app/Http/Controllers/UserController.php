@@ -92,7 +92,7 @@ class UserController extends Controller
                 return redirect(route('user-profile'));
             }
         }
-
+        $this->_data['posts'] = Post::where('user_id', '=', $id)->OrderBy('id','DESC')->get();
         $this->_data['user'] = User::find($id);
         return view($this->_path . 'user-guest', $this->_data);
     }
@@ -102,6 +102,8 @@ class UserController extends Controller
         $this->_data['user_id'] = Auth::guard('user')->user()->id;
         if (empty($this->_data['user_id'])) return redirect()->to(route('home'));
         $id = $this->_data['user_id'];
+
+        $this->_data['posts'] = Post::where('user_id', '=', $id)->OrderBy('id','DESC')->get();
         $this->_data['user'] = User::find($id);
         return view($this->_path . 'user-profile', $this->_data);
     }
@@ -156,6 +158,7 @@ class UserController extends Controller
                         $destinationPath = public_path('/images/user/post/');
                         if ($image->move($destinationPath, $name)) {
                             $postImage['post_id'] = $last_id;
+                            $postImage['image'] = $name;
                             PostImages::create($postImage);
                         }
                     }
@@ -167,7 +170,7 @@ class UserController extends Controller
 
                 $video = explode(',', $request->video);
                 foreach ($video as $url) {
-                    $postVideo['video'] = $url;
+                    $postVideo['video'] = explode('&', explode('?v=', $url)[1])[0];
                     PostVideos::create($postVideo);
                 }
                 return redirect(route('user-profile'))->with(['success' => 'post updated with video']);

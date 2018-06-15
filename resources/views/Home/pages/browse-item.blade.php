@@ -17,7 +17,9 @@
         <br>
         <div class="row">
             @forelse($items as $item)
-                @include('Home.Includes.item')
+                <div class="col-sm-6 col-md-4 col-lg-3 bg-items p-3">
+                    @include('Home.Includes.item')
+                </div>
             @empty
                 No item available
             @endforelse

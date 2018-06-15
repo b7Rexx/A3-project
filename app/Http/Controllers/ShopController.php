@@ -93,6 +93,7 @@ class ShopController extends Controller
 
         $this->_data['shop'] = Shop::find($id);
         $this->_data['shop_id'] = $id;
+        $this->_data['items'] = Item::where('shop_id', '=', $id)->paginate(12);
         return view($this->_path . 'shop-guest', $this->_data);
     }
 
@@ -230,7 +231,7 @@ class ShopController extends Controller
         if (!empty($image)) {
             File::delete(url('/images/shop/item/' . $image));
         }
-        Rating::where('item_id','=',$id)->delete();
+        Rating::where('item_id', '=', $id)->delete();
         Item::find($id)->delete();
         return response(['delete' => 'ok']);
     }

@@ -10,4 +10,20 @@ class Post extends Model
     protected $fillable = [
         'user_id', 'title', 'detail'
     ];
+
+    public function images()
+    {
+        return $this->hasMany(PostImages::class, 'post_id');
+    }
+
+    public function videos()
+    {
+        return $this->hasMany(PostVideos::class, 'post_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }

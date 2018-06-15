@@ -16,7 +16,7 @@
         <div class="input-group-prepend">
             <div class="input-group-text"><i class="fa fa-header"></i></div>
         </div>
-        <input type="text" name="title" class="form-control" id="inlineFormInputGroup" placeholder="Title">
+        <input type="text" name="title" class="form-control" id="inlineFormInputGroup" placeholder="Title" required>
     </div>
 
     <div class="input-group mb-2">
@@ -25,7 +25,7 @@
         </div>
         <textarea type="text" name="description" class="form-control" id="inlineFormInputGroup"
                   placeholder="Description"
-                  style="resize: none"></textarea>
+                  style="resize: none" required></textarea>
     </div>
 
     {{--<div class="input-group mb-2" id="post-image">--}}

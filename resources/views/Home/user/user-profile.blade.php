@@ -15,6 +15,11 @@
             </div>
             <div class="col-md-8 order-md-1">
                 @include('Home.Includes.post')
+                @forelse($posts as $post)
+                    @include('Home.Includes.view-post')
+                @empty
+                    No post available
+                @endforelse
             </div>
         </div>
     </div>

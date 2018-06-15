@@ -12,6 +12,23 @@
                 <h1>Gallery</h1>
             </div>
             <div class="col-md-8 order-md-1">
+                <h1>Items List</h1>
+
+                <div class="row">
+                    @forelse($items as $item)
+                        <div class="col-sm-6 col-lg-4 bg-items p-3">
+                            @include('Home.Includes.item')
+                        </div>
+                    @empty
+                        NO item available.
+                    @endforelse
+                </div>
+                <div class="row bg-white">
+                    <br>
+                    <hr>
+                    {{$items->links()}}
+
+                </div>
             </div>
         </div>
     </div>

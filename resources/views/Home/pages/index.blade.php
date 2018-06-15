@@ -22,16 +22,16 @@
                     <div class="col-sm-8">
                         @forelse($shops as $shop)
                             <div class="row border">
-                                <div class="col-sm-5 order-sm-2 p-1">
+                                <div class="col-sm-4 order-sm-2 p-1">
                                     <img src="{{url('images/shop/profile/'.$shop->image)}}" alt="Image"
-                                         style="height: 120px;width:100px">
+                                         style="height: 100px;width:80px">
                                 </div>
-                                <div class="col-sm-7 order-sm-1">
+                                <div class="col-sm-8 order-sm-1">
                                     <h4 title="{{$shop->name}}">{{str_limit($shop->name,30)}}</h4>
                                     <a href="#"> <i class="fa fa-envelope"></i> {{$shop->email}}</a>
                                     <br> <i class="fa fa-phone"></i> {{$shop->phone}}
                                     <br>
-                                    <i class="fa fa-map-marker"></i> {{$shop->address}}
+                                    <i class="fa fa-map-marker"></i> {{str_limit($shop->address,25)}}
                                 </div>
                             </div>
                             <br>
@@ -90,7 +90,9 @@
             <h3><i class="fa fa-archive"></i> Shop items</h3>
             <div class="row">
                 @forelse($items as $item)
-                    @include('Home.Includes.item')
+                    <div class="col-sm-6 col-md-4 col-lg-3 bg-items p-3">
+                        @include('Home.Includes.item')
+                    </div>
                 @empty
                     No items.
                 @endforelse

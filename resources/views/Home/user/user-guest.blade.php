@@ -12,11 +12,12 @@
                 <h1>Gallery</h1>
             </div>
             <div class="col-md-8 order-md-1">
-                {{--<form action="{{route('post-user')}}" method="post" class="post-form form-group p-3 bg-white" enctype="multipart/form-data">--}}
-                {{--@include('Home.Includes.post')--}}
-                {{--</form>--}}
-
-           <h1>GUEST</h1>
+                @forelse($posts as $post)
+                    @include('Home.Includes.view-post')
+                @empty
+                    No post available
+                @endforelse
+                <h1>GUEST</h1>
                 <h1>POSTS</h1>
             </div>
         </div>

@@ -1,4 +1,4 @@
-<div class="col-sm-6 col-md-4 col-lg-3 bg-items p-3">
+{{--<div class="col-sm-6 col-md-4 col-lg-3 bg-items p-3">--}}
     <div title="{{$item->name}}" class="index-items text-center">
         <h4>{{str_limit($item->name,18)}}</h4>
         <img src="{{URL::to('images/shop/item/'.$item->image)}}" alt="Shop image">
@@ -37,18 +37,24 @@
                 <input type="radio" class="rate-radio-{{$item->id}}" name="rate" value="5" {{$rate==5?'checked':''}}>
             </i>
         </form>
-    </div>
-    <div class="text-right">
-        Available :
+        <br>
+        <a href="{{url('shop/id/'.\App\Item::find($item->id)->shop->id)}}" title="{{\App\Item::find($item->id)->shop->name}}">
+            <i class="fa fa-map-marker"></i> {{str_limit(\App\Item::find($item->id)->shop->name,25)}}
+        </a>
+        <br>Available :
         @if($item->status == 'on')
             <i class="fa fa-check-square" style="color:green"></i>
         @elseif($item->status == 'off')
             <i class="fa fa-times" style="color:red"></i>
         @endif
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs. {{$item->price}}
     </div>
-    <a href="{{url('shop/id/'.\App\Item::find($item->id)->shop->id)}}"><i
-                class="fa fa-map-marker"></i> {{\App\Item::find($item->id)->shop->name}}</a>
 
-</div>
+    <div class="text-right">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs. {{$item->price}}<br>
+
+        <i class="fa fa-plus btn btn-warning"> Add to Cart <i class="fa fa-shopping-cart"> </i></i>
+
+    </div>
+
+{{--</div>--}}
                 
