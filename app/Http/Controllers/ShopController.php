@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use App\Main;
+use App\Rating;
 use App\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -104,15 +105,15 @@ class ShopController extends Controller
         return view($this->_path . 'shop-profile', $this->_data);
     }
 
-    public function shopItems()
-    {
-        $this->_data['shop_id'] = Auth::guard('shop')->user()->id;
-        if (empty($this->_data['shop_id'])) return redirect()->to(route('home'));
-
-        $id = $this->_data['shop_id'];
-        $this->_data['shop'] = Shop::find($id);
-        return view($this->_path . 'shop-profile', $this->_data);
-    }
+//    public function shopItems()
+//    {
+//        $this->_data['shop_id'] = Auth::guard('shop')->user()->id;
+//        if (empty($this->_data['shop_id'])) return redirect()->to(route('home'));
+//
+//        $id = $this->_data['shop_id'];
+//        $this->_data['shop'] = Shop::find($id);
+//        return view($this->_path . 'shop-profile', $this->_data);
+//    }
 
     public function profileImageUpload(Request $request)
     {
@@ -180,10 +181,57 @@ class ShopController extends Controller
         $this->_data['shop_id'] = Auth::guard('shop')->user()->id;
         $id = $this->_data['shop_id'];
         $data = Item::where('shop_id', '=', $id)->orderBy('id', 'DESC')->get();
-//        $shop = Shop::find($id)->name;
 
         return response($data);
-//        return response(['data' => $data, 'shop' => $shop,'shop_id' => $id]);
     }
 
+    public function getsetting()
+    {
+        $this->_data['shop_id'] = Auth::guard('shop')->user()->id;
+        if (empty($this->_data['shop_id'])) return redirect()->to(route('home'));
+
+        $id = $this->_data['shop_id'];
+        $this->_data['data'] = Shop::find($id);
+        return view($this->_path . 'shop-setting', $this->_data);
+    }
+
+    public function postsetting(Request $request)
+    {
+        $id = Auth::guard('shop')->user()->id;
+        $data['name'] = $request->name;
+        $data['address'] = $request->address;
+        $data['bio'] = $request->bio;
+        $data['phone'] = $request->phone;
+
+        if (Shop::find($id)->update($data)) {
+            return redirect()->back()->with(['success' => 'profile updated successfully']);
+        }
+        return redirect()->back()->with(['fail' => 'failed to update profile']);
+    }
+
+
+    public function updateItem(Request $request)
+    {
+        $id = $request->id;
+        $data['name'] = $request->name;
+        $data['price'] = $request->price;
+        $data['status'] = $request->status;
+        if (Item::find($id)->update($data)) {
+//            return response(['message' => 'ok']);
+            return response($request);
+        }
+        return response(['message' => 'NO']);
+    }
+
+    public function deleteItem(Request $request)
+    {
+        $id = $request->id;
+        $image = Item::find($id)->image;
+        if (!empty($image)) {
+            File::delete(url('/images/shop/item/' . $image));
+        }
+        Rating::where('item_id','=',$id)->delete();
+        Item::find($id)->delete();
+        return response(['delete' => 'ok']);
+    }
 }

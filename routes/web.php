@@ -1,6 +1,7 @@
 <?php
 
 use App\Category;
+use App\Item;
 use Illuminate\Support\Facades\Route;
 
 //Backend routes
@@ -23,6 +24,7 @@ Route::group(['prefix' => '@dmin'], function () {
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/list/shop', 'HomeController@shopList')->name('shop-list');
 Route::get('/list/user', 'HomeController@userList')->name('user-list');
+Route::get('/list/post', 'HomeController@postList')->name('post-list');
 
 
 //Shop routes
@@ -36,13 +38,20 @@ Route::group(['prefix' => 'shop'], function () {
 
     Route::group(['middleware' => 'auth:shop'], function () {
         Route::get('/', 'ShopController@LoggedProfile')->name('shop-profile');
-        Route::get('/items/{route?}', 'ShopController@shopItems')->name('shop-items');
         Route::post('/id/image', 'ShopController@profileImageUpload')->name('shop-profile-image-upload');
+
+        Route::get('/action/{route?}', 'ShopController@LoggedProfile');
+
+        Route::post('/action/update', 'ShopController@updateItem');
+        Route::post('/action/delete', 'ShopController@deleteItem');
+
         Route::post('item/addItem', 'ShopController@addItem');
         Route::post('item/addImage', 'ShopController@addImage');
 
         Route::get('/itemShopList', 'ShopController@itemShopList');
 
+        Route::get('setting', 'ShopController@getsetting');
+        Route::post('setting', 'ShopController@postsetting');
         Route::get('/logout', 'ShopController@logout')->name('shop-logout');
     });
 });
@@ -60,8 +69,10 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('/id/image', 'UserController@profileImageUpload');
         Route::get('/', 'UserController@LoggedProfile')->name('user-profile');
         Route::post('/api/rate', 'UserController@rate');
-        Route::post('post','UserController@post')->name('post-user');
+        Route::post('post', 'UserController@post')->name('post-user');
 
+        Route::get('setting', 'UserController@getsetting');
+        Route::post('setting', 'UserController@postsetting');
         Route::get('/logout', 'UserController@logout');
     });
 });
@@ -72,8 +83,11 @@ Route::group(['prefix' => 'item'], function () {
     Route::get('browse', 'ItemController@browse')->name('browse-item');
 });
 
-
 //api
 Route::get('api/categoryList', function () {
     return response(Category::all());
+});
+
+Route::get('api/shop/item/{id}', function ($id) {
+    return response(Item::find($id));
 });

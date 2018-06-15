@@ -29,7 +29,7 @@
             </li>
 
             <li class="nav-item pr-3">
-                <a class="nav-link" href="#">Posts</a>
+                <a class="nav-link" href="{{route('post-list')}}">Posts</a>
             </li>
 
             <li class="nav-item pr-3">

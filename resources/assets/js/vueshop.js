@@ -11,14 +11,14 @@ Vue.component('ItemListComponent', ItemListComponent);
 
 const router = new VueRouter({
     mode: 'history',
-    base: '/shop/items',
+    base: '/shop',
     routes: [
         {
             path: '/',
             component: ItemListComponent,
         },
         {
-            path: '/Add',
+            path: '/action/add',
             component: AddItemComponent,
         }
 

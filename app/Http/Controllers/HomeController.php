@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use App\Main;
+use App\Post;
 use App\Shop;
 use App\User;
 use Illuminate\Http\Request;
@@ -42,6 +43,12 @@ class HomeController extends Controller
     {
         $this->_data['users'] = User::orderBy('name', 'ASC')->paginate(6);
         return view($this->_path . 'user-list', $this->_data);
+    }
+
+    public function postList()
+    {
+        $this->_data['posts'] = Post::orderBy('id', 'DESC')->paginate(8);
+        return view($this->_path . 'post-list', $this->_data);
     }
 
 }

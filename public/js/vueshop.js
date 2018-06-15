@@ -12003,12 +12003,12 @@ Vue.component('ItemListComponent', __WEBPACK_IMPORTED_MODULE_2__components_shop_
 
 var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
     mode: 'history',
-    base: '/shop/items',
+    base: '/shop',
     routes: [{
         path: '/',
         component: __WEBPACK_IMPORTED_MODULE_2__components_shop_ItemListComponent_vue___default.a
     }, {
-        path: '/Add',
+        path: '/action/add',
         component: __WEBPACK_IMPORTED_MODULE_1__components_shop_AddItemComponent_vue___default.a
     }]
 });
@@ -12190,7 +12190,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post(server._url + '/shop/item/addItem', this.itemData).then(function (response) {
                 var status = response.data.status;
                 if (status === true) {
-                    console.log(response);
+                    // console.log(response);
                     _this.imageData.id = response.data.last_id;
                     // window.location.replace(server._url + '/shop/items/');
                     // let stat = this;
@@ -12215,7 +12215,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             formData.append('token', this.imageData.token);
 
             axios.post(server._url + '/shop/item/addImage', formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(function (response) {
-                console.log(response);
+                // console.log(response);
             });
             this.closeImg();
         },
@@ -12633,7 +12633,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.item {\n    position: relative;\n    background: white;\n    padding: 15px;\n    border-right: 1px solid lightgrey;\n    border-bottom: 1px solid lightgrey;\n}\n\n", ""]);
+exports.push([module.i, "\ntd > img {\n    height: 30px;\n    width: 30px;\n    -webkit-transition: 0.5s ease;\n    transition: 0.5s ease;\n    z-index: 1;\n}\ntd > img:hover {\n    height: 100px;\n    width: 100px;\n    z-index: 5;\n}\n#update-form {\n    display: none;\n    position: absolute;\n    left: 100px;\n    top: 200px;\n    width: 300px;\n    height: 500px;\n    background: white;\n    padding: 20px;\n}\n#update-form input {\n    display: inline-block;\n}\n", ""]);
 
 // exports
 
@@ -12664,16 +12664,70 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             itemList: '',
-            // shop: {
+            updateItem: [],
             id: '',
-            //     name: ''
-            // },
-            imagelink: server._url + '/images/shop/item/'
+            imagelink: server._url + '/images/shop/item/',
+            categoryValue: {
+                1: 'Fish',
+                2: 'Aquarium',
+                3: 'Food',
+                4: 'Decoration',
+                5: 'Medicine',
+                6: 'Others'
+            },
+            token: server._token
         };
     },
 
@@ -12681,13 +12735,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         itemShopList: function itemShopList() {
             var _this = this;
 
-            axios.get(server._url + '/shop/itemShopList/' + this.id).then(function (response) {
+            axios.get(server._url + '/shop/itemShopList/').then(function (response) {
                 _this.itemList = response.data;
-                // this.shop.id = '/id/' + response.data.shop_id;
-                // this.shop.name = response.data.shop;
-                console.log(_this.itemList);
-                // console.log(this.shop);
             });
+        },
+        editItem: function editItem(value) {
+            var _this2 = this;
+
+            axios.get(server._url + '/api/shop/item/' + value).then(function (response) {
+                _this2.updateItem = response.data;
+                $('#update-form').show();
+                // console.log(this.updateItem);
+
+                // console.log(response.data);
+            });
+        },
+        deleteItem: function deleteItem(value) {
+            var _this3 = this;
+
+            var deleteID = { 'id': value, '_token': this.token };
+
+            if (confirm('Are you sure to delete this item ? ')) {
+                axios.post(server._url + '/shop/action/delete', deleteID).then(function (response) {
+                    // console.log(response);
+                    _this3.itemShopList();
+                });
+            }
+        },
+        updatePost: function updatePost() {
+            var _this4 = this;
+
+            this.updateItem['token'] = this.token;
+            axios.post(server._url + '/shop/action/update', this.updateItem).then(function (response) {
+                _this4.closeUpdate();
+                _this4.itemShopList();
+                // console.log(response);
+            });
+        },
+        closeUpdate: function closeUpdate() {
+            this.updateItem = [];
+            $('#update-form').hide();
         }
     },
     created: function created() {
@@ -15347,41 +15434,255 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h1", [_vm._v("ok")]),
+    _c("h1", [_vm._v("Item List")]),
     _vm._v(" "),
     _c("hr"),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row" },
-      _vm._l(_vm.itemList, function(item) {
-        return _c("div", { staticClass: "col-sm-6 col-lg-4  bg-items p-3" }, [
+    _c("div", { staticClass: "row" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col-sm-6 text-right" },
+        [
           _c(
-            "div",
-            {
-              staticClass: "index-items text-center",
-              attrs: { title: item.name }
-            },
-            [
-              _c("h5", [_vm._v(_vm._s(_vm._f("strlimit")(item.name)))]),
+            "router-link",
+            { staticClass: "btn btn-primary", attrs: { to: "/action/add" } },
+            [_c("i", { staticClass: "fa fa-plus" }), _vm._v(" Add item")]
+          )
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c(
+        "table",
+        { staticClass: "table table-striped" },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._l(_vm.itemList, function(item, key) {
+            return _c("tr", [
+              _c("td", [_vm._v(_vm._s(++key))]),
               _vm._v(" "),
-              _c("img", {
-                attrs: { src: _vm.imagelink + item.image, alt: "Image" }
-              })
-            ]
-          ),
+              _c("td", { attrs: { title: item.name } }, [
+                _vm._v(_vm._s(_vm._f("strlimit")(item.name)))
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c("img", {
+                  attrs: { src: _vm.imagelink + item.image, alt: "Image" }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.categoryValue[item.category_id]))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Rs. " + _vm._s(item.price))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(item.status))]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-warning btn-sm",
+                    on: {
+                      click: function($event) {
+                        _vm.editItem(item.id)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-edit" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-sm",
+                    on: {
+                      click: function($event) {
+                        _vm.deleteItem(item.id)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-trash" })]
+                )
+              ])
+            ])
+          })
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { attrs: { id: "update-form" } }, [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              _vm.updatePost()
+            }
+          }
+        },
+        [
+          _vm._v("\n            Name : "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.updateItem.name,
+                expression: "updateItem.name"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.updateItem.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.updateItem, "name", $event.target.value)
+              }
+            }
+          }),
+          _vm._v("\n            Rs : "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.updateItem.price,
+                expression: "updateItem.price"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "number" },
+            domProps: { value: _vm.updateItem.price },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.updateItem, "price", $event.target.value)
+              }
+            }
+          }),
+          _vm._v("\n            Status :\n            "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.updateItem.status,
+                expression: "updateItem.status"
+              }
+            ],
+            attrs: { type: "radio", name: "status", value: "on" },
+            domProps: { checked: _vm._q(_vm.updateItem.status, "on") },
+            on: {
+              change: function($event) {
+                _vm.$set(_vm.updateItem, "status", "on")
+              }
+            }
+          }),
+          _vm._v("on\n            "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.updateItem.status,
+                expression: "updateItem.status"
+              }
+            ],
+            attrs: { type: "radio", name: "status", value: "off" },
+            domProps: { checked: _vm._q(_vm.updateItem.status, "off") },
+            on: {
+              change: function($event) {
+                _vm.$set(_vm.updateItem, "status", "off")
+              }
+            }
+          }),
+          _vm._v("off\n            "),
+          _c("br"),
           _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("div", { staticClass: "text-right" }, [
-            _vm._v("Rs. " + _vm._s(item.price))
-          ])
-        ])
-      })
-    )
+          _c(
+            "button",
+            { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+            [_vm._v("Update")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          on: {
+            click: function($event) {
+              _vm.closeUpdate()
+            }
+          }
+        },
+        [_vm._v("Back")]
+      )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-6" }, [
+      _c("div", { staticClass: "input-group mb-2" }, [
+        _c("div", { staticClass: "input-group-prepend" }, [
+          _c("div", { staticClass: "input-group-text" }, [
+            _c("i", { staticClass: "fa fa-search" })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: "inlineFormInputGroup",
+            placeholder: "Search"
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticClass: "bg-light" }, [
+      _c("th", [_vm._v("S/n")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Image")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Category")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Price")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Status")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Action")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

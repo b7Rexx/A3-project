@@ -66,7 +66,7 @@
                 axios.post(server._url + '/shop/item/addItem', this.itemData).then((response) => {
                     let status = response.data.status;
                     if (status === true) {
-                        console.log(response);
+                        // console.log(response);
                         this.imageData.id = response.data.last_id;
                         // window.location.replace(server._url + '/shop/items/');
                         // let stat = this;
@@ -92,7 +92,7 @@
 
                 axios.post(server._url + '/shop/item/addImage', formData, {headers: {'Content-Type': 'multipart/form-data'}}
                 ).then((response) => {
-                    console.log(response);
+                    // console.log(response);
                 });
                 this.closeImg();
             },

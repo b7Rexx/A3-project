@@ -137,15 +137,13 @@ class UserController extends Controller
 
         $getid = Rating::where('item_id', '=', $data['item_id'])->where('user_id', '=', $data['user_id']);
 
-        if ($getid->update($data)) {
-            return response(['message' => true]);
-        } else if (Rating::create($data)) {
-            return response(['message' => true]);
-        }
-        return response(['message' => false]);
+        $getid->delete();
+        Rating::create($data);
+        return response(['message' => true]);
     }
 
-    public function post(Request $request)
+    public
+    function post(Request $request)
     {
         $data['user_id'] = Auth::guard('user')->user()->id;
         $data['title'] = $request->title;
@@ -178,6 +176,32 @@ class UserController extends Controller
             return redirect(route('user-profile'))->with(['success' => 'post updated']);
         }
         return redirect(route('user-profile'))->with(['fail' => 'post failed']);
+    }
+
+    public
+    function getsetting()
+    {
+        $this->_data['user_id'] = Auth::guard('user')->user()->id;
+        if (empty($this->_data['user_id'])) return redirect()->to(route('home'));
+
+        $id = $this->_data['user_id'];
+        $this->_data['data'] = User::find($id);
+        return view($this->_path . 'user-setting', $this->_data);
+    }
+
+    public
+    function postsetting(Request $request)
+    {
+        $id = Auth::guard('user')->user()->id;
+        $data['name'] = $request->name;
+        $data['address'] = $request->address;
+        $data['bio'] = $request->bio;
+        $data['phone'] = $request->phone;
+
+        if (User::find($id)->update($data)) {
+            return redirect()->back()->with(['success' => 'profile updated successfully']);
+        }
+        return redirect()->back()->with(['fail' => 'failed to update profile']);
     }
 
 }

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg">
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="{{route('home')}}"> <i class="fa fa-star-o"></i> Items</a>
+            <a class="nav-link" href="{{url('/shop/')}}"> <i class="fa fa-shopping-cart"></i> Items</a>
         </li>
         {{--<li class="nav-item pr-3">--}}
         {{--<a class="nav-link" href="{{route('shop-profile')}}"> <i class="fa fa-user"></i> Profile</a>--}}
@@ -25,7 +25,7 @@
         <div class="dropdown" style="position: absolute;right:30px;">
             <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"> Settings</i></a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Edit Profile</a>
+                <a class="dropdown-item" href="{{url('shop/setting')}}">Edit Profile</a>
                 <a href="{{route('shop-logout')}}" class="dropdown-item">Logout</a>
             </div>
         </div>

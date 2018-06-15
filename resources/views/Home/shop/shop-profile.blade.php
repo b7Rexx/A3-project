@@ -13,11 +13,21 @@
                 <h1>Gallery</h1>
             </div>
             <div class="col-md-8 order-md-1">
-                <h1>ITEMS</h1>
-                {{--<form action="{{route('post-shop')}}" method="post" class="post-form form-group p-3 bg-white" enctype="multipart/form-data">--}}
-                {{--@include('Home.Includes.post')--}}
-                {{--</form>--}}
+                <div id="shop-item">
+                    <router-view></router-view>
+                </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+<script>
+var server = {
+_url: '{{URL::to('/')}}',
+_token: '{{csrf_token()}}',
+_shopid: '{{$shop_id}}'
+};
+</script>
+<script src="{{URL::to('js/vueshop.js')}}"></script>
 @endsection

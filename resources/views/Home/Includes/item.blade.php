@@ -39,8 +39,16 @@
         </form>
     </div>
     <div class="text-right">
-        Rs. {{$item->price}}
+        Available :
+        @if($item->status == 'on')
+            <i class="fa fa-check-square" style="color:green"></i>
+        @elseif($item->status == 'off')
+            <i class="fa fa-times" style="color:red"></i>
+        @endif
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rs. {{$item->price}}
     </div>
-    <a href="{{url('shop/id/'.\App\Item::find($item->id)->shop->id)}}">{{\App\Item::find($item->id)->shop->name}}</a>
+    <a href="{{url('shop/id/'.\App\Item::find($item->id)->shop->id)}}"><i
+                class="fa fa-map-marker"></i> {{\App\Item::find($item->id)->shop->name}}</a>
+
 </div>
                 
