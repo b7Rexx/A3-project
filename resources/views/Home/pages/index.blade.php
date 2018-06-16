@@ -20,6 +20,8 @@
             <div class="col-lg-5 col-md-6 p-2 home-shops">
                 <div class="row">
                     <div class="col-sm-8">
+                        <h4>Featured Shops</h4>
+                        <hr>
                         @forelse($shops as $shop)
                             <div class="row border">
                                 <div class="col-sm-4 order-sm-2 p-1">
@@ -40,8 +42,8 @@
                         @endforelse
                     </div>
                     <div class="col-sm-4">
-                        <h2>Forum</h2>
-
+                        <h4>Popular Forum</h4>
+                        <hr>
                         <p class="border">Lorem ipsum dolor sit amet, consectetur adip
                             vero, voluptatem?</p>
                         <p class="border">Lorem ipsum dolor sit amet, consectetur adip

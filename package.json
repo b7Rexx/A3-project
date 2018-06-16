@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "aos": "^2.3.0",
+        "carbon": "^0.5.0",
         "font-awesome": "^4.7.0",
         "vue-router": "^3.0.1"
     }

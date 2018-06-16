@@ -36,4 +36,16 @@
     </div>
     <hr>
     {{$post->detail}}
+
+    {{--comments--}}
+    <div class="text-info view-post">
+        <a class="small p-2 fa fa-thumbs-up" href="#"> likes</a>
+        <a class="small p-2 fa fa-comment" href="#"> comments</a>
+    </div>
+
+    <div class="text-right text-secondary">
+        {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}
+    </div>
+
 </div>
+

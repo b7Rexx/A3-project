@@ -102,7 +102,7 @@ footer {
 }
 
 .mid-home {
-    padding: 10px 100px 10px 100px;
+    padding: 10px 40px 10px 40px;
 }
 
 .mid-home img {
@@ -127,4 +127,10 @@ footer {
 
 .post-block > a {
     font-size: 18px;
+}
+
+.signup-carousel {
+    height: auto;
+    max-width: 300px;
+    margin: 0 auto;
 }

@@ -23,9 +23,9 @@
                 </a>
             </div>
         </div>
-        <div>
-            @include('Home.Includes.carousel')
-        </div>
+        {{--<div class="signup-carousel">--}}
+            {{--@include('Home.Includes.carousel')--}}
+        {{--</div>--}}
     </div>
 @endsection
 

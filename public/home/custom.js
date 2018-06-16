@@ -24,12 +24,8 @@ $(document).ready(function () {
     $('#image-button-close').on('click', function () {
         $('.profile-image-form').hide();
     });
-});
 
-
-//rating
-
-$(document).ready(function () {
+// Rating
     //rating color
     var i;
     for (i = 1; i < 38; i++) {
@@ -69,7 +65,7 @@ $(document).ready(function () {
                         $('.rate-message').remove();
                     }, 3000)
                 },
-                error:function () {
+                error: function () {
                     alert('Login required');
                 }
 
@@ -78,10 +74,8 @@ $(document).ready(function () {
         });
     });
 
-});
 
-
-$(document).ready(function () {
+    //add post in user profile
     $('#post-image-button').click(function (e) {
         e.preventDefault();
 
@@ -102,13 +96,13 @@ $(document).ready(function () {
 
     $('#post-video-button').click(function (e) {
         e.preventDefault();
-         var videoform = "\n" +
-             "<div class=\"input-group mb-2\" id=\"post-video\">\n" +
-             "    <div class=\"input-group-prepend\">\n" +
-             "        <div class=\"input-group-text\"><i class=\"fa fa-video-camera\"></i></div>\n" +
-             "    </div>\n" +
-             "    <input type=\"text\" name=\"video\" class=\"form-control\" id=\"inlineFormInputGroup\" placeholder=\"video URL : separate urls with comma (,)\">\n" +
-             "</div>";
+        var videoform = "\n" +
+            "<div class=\"input-group mb-2\" id=\"post-video\">\n" +
+            "    <div class=\"input-group-prepend\">\n" +
+            "        <div class=\"input-group-text\"><i class=\"fa fa-video-camera\"></i></div>\n" +
+            "    </div>\n" +
+            "    <input type=\"text\" name=\"video\" class=\"form-control\" id=\"inlineFormInputGroup\" placeholder=\"video URL : separate urls with comma (,)\">\n" +
+            "</div>";
 
 
         if (!($('.post-form').hasClass('video-post'))) {
@@ -118,4 +112,12 @@ $(document).ready(function () {
             $('#post-image').remove();
         }
     });
+
+
+    //view post
+    $('.view-post > a').on('click', function (e) {
+        e.preventDefault();
+    });
+
+
 });
