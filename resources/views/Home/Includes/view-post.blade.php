@@ -56,8 +56,9 @@
             <div class="bg-white p-1" style="max-height: 200px;overflow-y: scroll">
 
                 @forelse($post->comment as $comment)
-                    <b class="pl-2"><i class="fa fa-user"></i> {{$comment->user->name}}</b><br>
+                    <i class="pl-2 text-info"><i class="fa fa-user"></i> {{$comment->user->name}}</i><br>
                     <a class="text-secondary"> {{$comment->comment}}</a>
+                    <div class="small text-secondary text-right"> {{\Carbon\Carbon::parse($comment->updated_at)->diffForHumans()}}</div>
                     <hr>
                 @empty
                     No comment.

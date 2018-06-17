@@ -1,7 +1,7 @@
 @extends('Home.Master')
 
 @section('title')
-    A3 - Posts
+    A3 - Post Detail
 @endsection
 
 @section('body')
@@ -15,14 +15,8 @@
             </div>
         </div>
         <br>
-        <div class="row list">
-            @forelse($posts as $post)
-                <div class="col-lg-6">
-                    @include('Home.Includes.view-post')
-                </div>
-            @empty
-                No post available
-            @endforelse
+        <div class="row">
+            @include('Home.Includes.view-post')
         </div>
     </div>
 @endsection
