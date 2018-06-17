@@ -34,14 +34,3 @@
     </div>
 
 @endsection
-
-{{--@section('js')--}}
-{{--<script>--}}
-{{--var server = {--}}
-{{--_url: '{{URL::to('/')}}',--}}
-{{--_token: '{{csrf_token()}}',--}}
-{{--_shopid: '{{$shop_id}}'--}}
-{{--};--}}
-{{--</script>--}}
-{{--<script src="{{URL::to('js/vueshop.js')}}"></script>--}}
-{{--@endsection--}}

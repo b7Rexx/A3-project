@@ -71,6 +71,8 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('/api/rate', 'UserController@rate');
         Route::post('post', 'UserController@post')->name('post-user');
 
+        Route::post('/comment/add', 'UserController@commentAdd');
+
         Route::get('setting', 'UserController@getsetting');
         Route::post('setting', 'UserController@postsetting');
         Route::get('/logout', 'UserController@logout');

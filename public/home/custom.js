@@ -119,5 +119,50 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
+//comment
+    var commentId;
 
-});
+    $('.comment-button').on('click', function () {
+        var value = $(this).attr('post_id');
+        $('.comment-all').hide();
+        commentId = value;
+        loadComment(commentId);
+        $('.comment-' + value).show();
+    });
+
+
+    $(".comment-text").keypress(function (e) {
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if (code == 13) {
+            var commentText = $(this).val();
+            var commentdata = {'post_id': commentId, 'comment': commentText, '_token': server._token};
+
+            $.ajax({
+                url: server._url + '/user/comment/add', type: 'post', data: commentdata, error: function () {
+                    alert('Login required !')
+                }, success(response) {
+                    loadComment(commentId);
+                    console.log(response);
+                    $('.comment-text').focus(function () {
+                        $(this).val("");
+                        $(this).text("");
+                        $(this).html("");
+                    });
+
+                    $('.comment-all').hide();
+                    setTimeout(function () {
+                        $('.comment-' + commentId).show();
+                    }, 500);
+
+                }
+            });
+
+        }
+    });
+
+    function loadComment(id) {
+        console.log('load comment' + id);
+    }
+
+})
+;

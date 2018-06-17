@@ -41,7 +41,7 @@ footer {
 
 .footer-links {
     background: whitesmoke;
-    border-bottom-right-radius: 110px;
+    /*border-bottom-right-radius: 50px;*/
 }
 
 .bg-content {
@@ -102,7 +102,7 @@ footer {
 }
 
 .mid-home {
-    padding: 10px 40px 10px 40px;
+    padding: 10px;
 }
 
 .mid-home img {

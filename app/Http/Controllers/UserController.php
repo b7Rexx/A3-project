@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Main;
 use App\Post;
 use App\PostImages;
@@ -92,7 +93,7 @@ class UserController extends Controller
                 return redirect(route('user-profile'));
             }
         }
-        $this->_data['posts'] = Post::where('user_id', '=', $id)->OrderBy('id','DESC')->get();
+        $this->_data['posts'] = Post::where('user_id', '=', $id)->OrderBy('id', 'DESC')->get();
         $this->_data['user'] = User::find($id);
         return view($this->_path . 'user-guest', $this->_data);
     }
@@ -103,7 +104,7 @@ class UserController extends Controller
         if (empty($this->_data['user_id'])) return redirect()->to(route('home'));
         $id = $this->_data['user_id'];
 
-        $this->_data['posts'] = Post::where('user_id', '=', $id)->OrderBy('id','DESC')->get();
+        $this->_data['posts'] = Post::where('user_id', '=', $id)->OrderBy('id', 'DESC')->get();
         $this->_data['user'] = User::find($id);
         return view($this->_path . 'user-profile', $this->_data);
     }
@@ -207,4 +208,18 @@ class UserController extends Controller
         return redirect()->back()->with(['fail' => 'failed to update profile']);
     }
 
+    public function commentAdd(Request $request)
+    {
+        $id = Auth::guard('user')->user()->id;
+        $data['user_id'] = $id;
+        $data['post_id'] = $request->post_id;
+        $data['comment'] = $request->comment;
+
+        if (Comment::create($data)) {
+            return response(['status' => true]);
+        }
+        return response(['status' => false]);
+    }
+
 }
+
