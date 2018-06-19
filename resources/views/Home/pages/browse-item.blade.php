@@ -6,12 +6,14 @@
 
 @section('body')
     <div class="bg-content">
-        <div class="row" style="max-height:150px">
-            <div class="col-sm-2">
+        <div class="row">
+            <div class="col-sm-4 order-sm-2">
+                <br>
                 @include('Home.Includes.carousel')
             </div>
-            <div class="col-sm-9">
-
+            <div class="col-sm-8 order-sm-1">
+                <br>
+                <input type="text" class="form-control">
             </div>
         </div>
         <br>

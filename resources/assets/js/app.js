@@ -7,8 +7,8 @@
  */
 
 require('./bootstrap');
-// window.Vue = require('vue');
-
+window.Vue = require('vue');
+//
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -22,5 +22,5 @@ require('./bootstrap');
 // });
 
 //animate on scroll
-window.AOS = require('AOS');
-AOS.init();
+// window.AOS = require('AOS');
+// AOS.init();

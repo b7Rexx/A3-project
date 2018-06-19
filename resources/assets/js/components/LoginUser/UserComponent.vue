@@ -30,7 +30,7 @@
                 logData: {
                     email: '',
                     password: '',
-                    remember: '',
+                    remember: false,
                     token: server._token,
                 },
                 loginstat:false

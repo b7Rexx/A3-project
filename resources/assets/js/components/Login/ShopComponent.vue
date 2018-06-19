@@ -31,7 +31,7 @@
                 logData: {
                     email: '',
                     password: '',
-                    remember: '',
+                    remember: false,
                     token: server._token,
                 },
                 loginstat: false
@@ -53,7 +53,7 @@
                         console.log(response);
                     }
                 }).catch(error => {
-                    console.log(error.response)
+                    // console.log(error.response)
                 });
             }
         }

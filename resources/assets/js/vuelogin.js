@@ -1,15 +1,14 @@
-window.Vue = require('vue');
 import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
 import ShopComponent from './components/Login/ShopComponent.vue';
-import RegisterComponent from './components/Login/RegisterComponent.vue';
-import RegisterSecondComponent from './components/Login/RegisterSecondComponent.vue';
+import SRegisterComponent from './components/Login/SRegisterComponent.vue';
+import SRegisterSecondComponent from './components/Login/SRegisterSecondComponent.vue';
 
 Vue.component('ShopComponent', ShopComponent);
-Vue.component('RegisterComponent', RegisterComponent);
-Vue.component('RegisterSecondComponent', RegisterSecondComponent);
+Vue.component('SRegisterComponent', SRegisterComponent);
+Vue.component('SRegisterSecondComponent', SRegisterSecondComponent);
 
 const router = new VueRouter({
     mode: 'history',
@@ -21,11 +20,11 @@ const router = new VueRouter({
         },
         {
             path: '/register',
-            component: RegisterComponent,
+            component: SRegisterComponent,
         },
         {
             path: '/register/:id',
-            component: RegisterSecondComponent,
+            component: SRegisterSecondComponent,
         },
     ]
 });

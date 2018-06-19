@@ -14,7 +14,7 @@
             <br>
         </div>
         <div class="row">
-            <div class="index-carousel col-lg-7 col-md-6" data-aos="fade-right">
+            <div class="index-carousel col-lg-7 col-md-6">
                 @include('Home.Includes.carousel')
             </div>
             <div class="col-lg-5 col-md-6 p-2 home-shops">
@@ -51,15 +51,17 @@
                 {{--<div class="col-sm-4">--}}
                 <h4>Popular Disccussions </h4>
                 <hr>
-                <p class="border bg-white p-2"><i class="fa fa-question-circle"></i> Lorem ipsum dolor sit amet, consectetur adip
+                <p class="border bg-white p-2"><i class="fa fa-question-circle"></i> Lorem ipsum dolor sit amet,
+                    consectetur adip
                     vero, voluptatem?</p>
-                <p class="border bg-white p-2"><i class="fa fa-question-circle"></i> Lorem ipsum dolor sit amet, consectetur adip
+                <p class="border bg-white p-2"><i class="fa fa-question-circle"></i> Lorem ipsum dolor sit amet,
+                    consectetur adip
                     tenetur ullam voluptatum?</p>
             </div>
             <div class="col-md-8 order-md-1">
                 <div class="row">
                     <div class="col-sm-6 text-center mid-home">
-                        <div data-aos="fade-up-left" data-aos-duration="500">
+                        <div>
                             <a href="{{route('user-signup')}}">
                                 <i class="fa fa-users fa-3x"></i><br>
                                 <h3>User Login</h3>
@@ -68,7 +70,7 @@
                         </div>
                     </div>
                     <div class="col-sm-6 text-center mid-home">
-                        <div data-aos="fade-up-left" data-aos-duration="500">
+                        <div>
                             <a href="{{route('login')}}">
                                 <i class="fa fa-shopping-cart fa-3x"></i><br>
                                 <h3>Shop Login</h3>
@@ -81,7 +83,7 @@
 
                     </div>
                     <div class="col-sm-6 text-center mid-home">
-                        <div data-aos="fade-up-left" data-aos-duration="500">
+                        <div>
                             <a href="{{route('browse-item')}}">
                                 <i class="fa fa-search fa-3x"></i><br>
                                 <h3>Browse Item</h3>
@@ -92,7 +94,6 @@
                 </div>
             </div>
         </div>
-
         <div class="p-2">
             <h3><i class="fa fa-archive"></i> Shop items</h3>
             <div class="row">

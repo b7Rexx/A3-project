@@ -34,7 +34,7 @@ class UserController extends Controller
     {
         $email = $request->email;
         $password = $request->password;
-        $remember = $request->remember === true ?? false;
+        $remember = $request->remember;
 
         if (Auth::guard('user')->attempt(['email' => $email, 'password' => $password], $remember)) {
 //            return redirect()->intended(route('shop-profile'));

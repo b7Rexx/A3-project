@@ -16,32 +16,10 @@
 @import "~font-awesome/scss/font-awesome";
 
 //animate on scroll
-@import "~aos/dist/aos.css";
+//@import "~aos/dist/aos.css";
 
 //Custom css
-*:not(i) {
-  color: #480032;
-}
-
 .row {
   margin: 0;
   padding: 0;
 }
-
-.back-cover {
-  background-image: url("../../../public/images/back-cover.jpg");
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-a {
-  color: #005792;
-}
-
-a:hover {
-  color: #f62a66;
-  text-decoration: none;
-}
-
-

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -13,7 +13,7 @@
 </head>
 
 <body class="back-cover">
-<div class="container">
+<div class="container" id="cart">
     <header class="p-2">
         <div class="row">
             <div class="col-sm-8">

@@ -9,6 +9,7 @@ use App\Shop;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -51,4 +52,15 @@ class HomeController extends Controller
         return view($this->_path . 'post-list', $this->_data);
     }
 
+    public function cartView()
+    {
+        return view($this->_path . 'cart', $this->_data);
+    }
+
+    public function cartManager(Request $request)
+    {
+        $data = $request->item_id;
+        Session::push('cartList', $data);
+        return response(['status' => true]);
+    }
 }

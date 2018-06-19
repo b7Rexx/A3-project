@@ -29,12 +29,11 @@ class ShopController extends Controller
     {
         $email = $request->email;
         $password = $request->password;
-        $remember = $request->remember === true ?? false;
+        $remember = $request->remember;
 
         if (Auth::guard('shop')->attempt(['email' => $email, 'password' => $password], $remember)) {
 //            return redirect()->intended(route('shop-profile'));
             return response(['status' => true]);
-
         }
         return response(['status' => false]);
 //        return redirect()->back()->with('fail', 'Invalid Email or Password Combination.');

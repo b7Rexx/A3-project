@@ -2,7 +2,9 @@
 
 use App\Category;
 use App\Item;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 //Backend routes
 Route::group(['prefix' => '@dmin'], function () {
@@ -25,7 +27,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/list/shop', 'HomeController@shopList')->name('shop-list');
 Route::get('/list/user', 'HomeController@userList')->name('user-list');
 Route::get('/list/post', 'HomeController@postList')->name('post-list');
-
+Route::get('cart/view', 'HomeController@cartView');
 
 //Shop routes
 Route::group(['prefix' => 'shop'], function () {
@@ -76,6 +78,7 @@ Route::group(['prefix' => 'user'], function () {
         Route::get('setting', 'UserController@getsetting');
         Route::post('setting', 'UserController@postsetting');
         Route::get('/logout', 'UserController@logout');
+
     });
 });
 
@@ -92,4 +95,20 @@ Route::get('api/categoryList', function () {
 
 Route::get('api/shop/item/{id}', function ($id) {
     return response(Item::find($id));
+});
+
+Route::post('api/store/cart', 'HomeController@cartManager');
+
+Route::get('api/get/cartItem', function () {
+    $data = Session::get('cartList');
+    if (empty($data)) return response(['status' => false]);
+    $items = [];
+    $i=0;
+    foreach ($data as $id) {
+        $item = Item::find($id);
+        if (!in_array($item, $items)) {
+            $items[$i++] = $item;
+        }
+    }
+    return response($items);
 });

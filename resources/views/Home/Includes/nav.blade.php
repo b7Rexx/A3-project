@@ -39,20 +39,39 @@
             <li class="nav-item pr-3">
                 <a class="nav-link" href="#">Feedback</a>
             </li>
+
+            <li class="nav-item pr-3 dropdown">
+                <a class="nav-link dropdown-toggle btn btn-danger btn-sm" data-toggle="dropdown" aria-haspopup="true">
+                    @{{cartCountData}}
+                    <i class="fa fa-shopping-cart"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div v-if="cartListData">
+                        <div v-for="item in cartListData">
+                            <a class="dropdown-item" href="{{url('/cart/view')}}">@{{item.name|strlimit}} | Rs. @{{
+                                item.price }}</a>
+                        </div>
+                    </div>
+                    <div v-else>
+                        &nbsp;&nbsp;No items in cart.
+                    </div>
+                </div>
+            </li>
+
             <?php
             use Illuminate\Support\Facades\Auth;
             $logShop = Auth::guard('shop')->user();
             $logUser = Auth::guard('user')->user();
             ?>
             <div class="btn-circle">
-                <a class="btn btn-lg" href="{{route('user-signup')}}">
+                <a class="btn btn-lg border" href="{{route('user-signup')}}">
                     @if($logUser)
                         <img title="{{$logUser->name}}" src="{{url('images/user/profile/'.$logUser->image)}}" alt="">
                     @else
                         <img src="{{url('images/U.jpg')}}" alt="">
                     @endif
                 </a>
-                <a class="btn btn-lg" href="{{route('login')}}">
+                <a class="btn btn-lg border" href="{{route('login')}}">
                     @if($logShop)
                         <img title="{{$logShop->name}}" src="{{url('images/shop/profile/'.$logShop->image)}}" alt="">
                     @else

@@ -1,5 +1,6 @@
 {{--<div class="col-sm-6 col-md-4 col-lg-3 bg-items p-3">--}}
-<div title="{{$item->name}}" class="index-items text-center">
+<div title="{{$item->name}}" class="index-items text-center" xmlns:v-on="http://www.w3.org/1999/xhtml"
+     xmlns:v-on="http://www.w3.org/1999/xhtml">
     <h4>{{str_limit($item->name,18)}}</h4>
     <img src="{{URL::to('images/shop/item/'.$item->image)}}" alt="Shop image">
     <br>
@@ -57,6 +58,6 @@
     </div>
     <div class="col-sm-6 text-right">
         Rs. {{$item->price}}<br>
-        <i class="fa fa-plus btn btn-warning"> to Cart <i class="fa fa-shopping-cart"> </i></i>
+        <i class="fa fa-plus btn btn-warning" v-on:click="addCart({{$item->id}})"> to Cart <i class="fa fa-shopping-cart"> </i></i>
     </div>
 </div>

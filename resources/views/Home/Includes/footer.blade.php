@@ -1,3 +1,4 @@
+<button onclick="topFunction()" id="myBtn" title="Back to top"><i class="fa fa-arrow-up"></i></button>
 <div class="footer-links">
     <div class="row p-4">
         <div class="col-md-4 col-sm-6 text-center">
@@ -5,17 +6,20 @@
         </div>
         <div class="col-md-4 col-sm-3">
             <br><h4>Fast Links</h4>
-            <a href="#">Home</a><br>
-            <a href="#">Events</a><br>
-            <a href="#">Images</a><br>
-            <a href="#">Videos</a>
+            <a href="{{url('/')}}" class="fa fa-caret-right"> Home</a><br>
+            <a href="{{url('/list/shop')}}" class="fa fa-caret-right"> Shops</a><br>
+            <a href="{{url('/list/user')}}" class="fa fa-caret-right"> Users</a><br>
+            <a href="{{url('/item/browse')}}" class="fa fa-caret-right"> Items</a><br>
+            <a href="{{url('/list/post')}}" class="fa fa-caret-right"> Posts</a><br>
         </div>
         <div class="col-md-4 col-sm-3">
-            <br><h4>Company</h4>
-            <a href="/Company/Food-Hygiene">Food Hygiene</a>
-            <br><a href="/Company/Training">Training</a>
-            <br><a href="/Company/Home-Stay">Home Stay</a>
-            <br><a href="/Company/Restaurant-Management">Restaurant Management</a>
+            <br><h4>Login Features</h4>
+            <a href="{{url('/user/signup')}}" class="fa fa-caret-right"> User SignUp</a><br>
+            <a href="{{url('/user/signup/register')}}" class="fa fa-caret-right"> User Register</a><br>
+            <a href="{{url('/shop/signup')}}" class="fa fa-caret-right"> Shop SignUp</a><br>
+            <a href="{{url('/shop/signup/register')}}" class="fa fa-caret-right"> Shop Register</a><br>
+            <a href="{{url('/forum')}}" class="fa fa-caret-right"> Forum</a><br>
+            <a href="{{url('/feedback')}}" class="fa fa-caret-right"> Feedback</a><br>
         </div>
     </div>
 </div>
@@ -40,7 +44,9 @@
     };
 </script>
 <script src="{{URL::to('js/app.js')}}"></script>
+<script src="{{URL::to('js/cart.js')}}"></script>
 <script src="{{URL::to('home/custom.js')}}"></script>
+
 @yield('js')
 </body>
 </html>

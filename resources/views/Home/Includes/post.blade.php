@@ -6,6 +6,7 @@
         <i>Add images or videos : </i>
         <button class="fa fa-image btn btn-primary" id="post-image-button" title="Add Images"></button>
         <button class="fa fa-video-camera btn btn-primary" id="post-video-button" title="Add Videos"></button>
+        &nbsp;&nbsp;&nbsp;&nbsp; <button class="fa fa-times btn btn-danger" id="no-image-video-button" title="No image or video"></button>
     </div>
 
     <button class="btn btn-primary" type="submit"> POST</button>
