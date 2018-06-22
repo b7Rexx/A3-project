@@ -40,25 +40,49 @@
         @endforelse
     </div>
     <hr>
-    {{$post->detail}}
+    <div class="text-info">
+        <i class="fa fa-sticky-note"> Description : &nbsp;&nbsp;&nbsp;&nbsp;</i>{{$post->detail}}
+    </div>
 
 
     <div class="text-right text-secondary">
+        <?php
+        use Illuminate\Support\Facades\Auth;
+        $check_post = $post->user_id;
+        $check = 0;
+        if (Auth::guard('user')->check()) {
+            $check = Auth::guard('user')->user()->id;
+        }
+        if ($check == $check_post) {?>
+        {{--<i class="fa fa-edit"> edit</i>&nbsp;&nbsp;&nbsp;--}}
+        <i class="fa fa-trash small post-delete" post_id="{{$post->id }}"> delete</i>
+        <?php } ?>
+        <br>
         {{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}
+
     </div>
 
     {{--comments--}}
-    <div class="text-info view-post">
+    <div class="text-info view-post border">
         {{--<a class="small p-2 fa fa-thumbs-up" href="#"> likes</a>--}}
         <a class="small p-2 fa fa-comment comment-button" href="#" post_id="{{$post->id}}"> {{count($post->comment)}}
             comments</a>
         <div class="comment-all comment-{{$post->id}}" style="display: none">
             <div class="bg-white p-1" style="max-height: 200px;overflow-y: scroll">
-
                 @forelse($post->comment as $comment)
-                    <i class="pl-2 text-info"><i class="fa fa-user"></i> {{$comment->user->name}}</i><br>
+                    <i class="pl-2 text-info"><i class="fa fa-user"></i> {{$comment->user->name}}</i>
+                    <br>
                     <a class="text-secondary"> {{$comment->comment}}</a>
-                    <div class="small text-secondary text-right"> {{\Carbon\Carbon::parse($comment->updated_at)->diffForHumans()}}</div>
+                    <div class="small text-secondary text-right">
+                        <?php
+                        $check_comment = $comment->user_id;
+                        if ($check == $check_comment || $check == $post->user_id){
+                        ?>
+                        <i class="fa fa-trash comment-delete" comment_id="{{$comment->id }}"></i>
+                        <br>
+                        <?php } ?>
+                        {{\Carbon\Carbon::parse($comment->updated_at)->diffForHumans()}}
+                    </div>
                     <hr>
                 @empty
                     No comment.

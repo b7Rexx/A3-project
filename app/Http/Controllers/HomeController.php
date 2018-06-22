@@ -60,7 +60,15 @@ class HomeController extends Controller
     public function cartManager(Request $request)
     {
         $data = $request->item_id;
-        Session::push('cartList', $data);
+        $array = Session::get('cartList');
+
+        if (empty($array)) {
+            Session::push('cartList', $data);
+        } else {
+            if (!in_array($data, $array)) {
+                Session::push('cartList', $data);
+            }
+        }
         return response(['status' => true]);
     }
 }

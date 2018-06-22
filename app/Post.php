@@ -28,6 +28,6 @@ class Post extends Model
 
     public function comment()
     {
-        return $this->hasMany(Comment::class, 'post_id');
+        return $this->hasMany(Comment::class, 'post_id')->orderBy('id','DESC');
     }
 }

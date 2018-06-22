@@ -48,7 +48,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <div v-if="cartListData">
                         <div v-for="item in cartListData">
-                            <a class="dropdown-item" href="{{url('/cart/view')}}">@{{item.name|strlimit}} | Rs. @{{
+                            <a class="dropdown-item" href="{{url('/user/cart/view')}}">@{{item.name|strlimit}} | Rs. @{{
                                 item.price }}</a>
                         </div>
                     </div>

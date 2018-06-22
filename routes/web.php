@@ -27,7 +27,6 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/list/shop', 'HomeController@shopList')->name('shop-list');
 Route::get('/list/user', 'HomeController@userList')->name('user-list');
 Route::get('/list/post', 'HomeController@postList')->name('post-list');
-Route::get('cart/view', 'HomeController@cartView');
 
 //Shop routes
 Route::group(['prefix' => 'shop'], function () {
@@ -71,13 +70,19 @@ Route::group(['prefix' => 'user'], function () {
         Route::post('/id/image', 'UserController@profileImageUpload');
         Route::get('/', 'UserController@LoggedProfile')->name('user-profile');
         Route::post('/api/rate', 'UserController@rate');
+
         Route::post('post', 'UserController@post')->name('post-user');
+        Route::get('post/delete/{id}', 'UserController@postDelete');
 
         Route::post('/comment/add', 'UserController@commentAdd');
+        Route::get('comment/delete/{id}', 'UserController@commentDelete');
 
         Route::get('setting', 'UserController@getsetting');
         Route::post('setting', 'UserController@postsetting');
         Route::get('/logout', 'UserController@logout');
+
+
+        Route::get('cart/view', 'HomeController@cartView');
 
     });
 });
@@ -100,15 +105,25 @@ Route::get('api/shop/item/{id}', function ($id) {
 Route::post('api/store/cart', 'HomeController@cartManager');
 
 Route::get('api/get/cartItem', function () {
-    $data = Session::get('cartList');
-    if (empty($data)) return response(['status' => false]);
+    $array = Session::get('cartList');
+    if (empty($array)) return response(['status' => false]);
+    $data = array_unique($array);
     $items = [];
-    $i=0;
+    $i = 0;
     foreach ($data as $id) {
         $item = Item::find($id);
-        if (!in_array($item, $items)) {
-            $items[$i++] = $item;
-        }
+        $items[$i++] = $item;
     }
     return response($items);
+});
+
+Route::get('api/remove/cartItem/{id}', function ($id) {
+//    $data = Session::forget("cartList." . $id);
+    $list = Session::get('cartList');
+    foreach ($list as $key => $item) {
+        if ($item == $id) {
+            $del = Session::forget("cartList." . $key);
+        }
+    }
+    return response($del);
 });

@@ -54,7 +54,7 @@ header {
 }
 
 .dropdown-menu {
-    z-index:30;
+    z-index: 30;
     border-top: none;
 }
 
@@ -84,7 +84,7 @@ footer {
 }
 
 .no-index-carousel img {
-    height:160px;
+    height: 160px;
 }
 
 .carousel-indicators > li {
@@ -170,13 +170,20 @@ footer {
     z-index: 25;
     border: none;
     outline: none;
-    background-color: saddlebrown;
+    background-color: deepskyblue;
     color: white;
     cursor: pointer;
-    padding: 15px;
+    padding: 5px 10px 5px 10px;
     border-radius: 4px;
+    transform: rotate(180deg);
 }
 
 #myBtn:hover {
     background-color: blue;
+}
+
+.rate-message {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
 }

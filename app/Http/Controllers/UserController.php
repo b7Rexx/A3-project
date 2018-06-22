@@ -182,6 +182,15 @@ class UserController extends Controller
         return redirect(route('user-profile'))->with(['fail' => 'post failed']);
     }
 
+    public function postDelete($id)
+    {
+        if (Post::find($id)->delete()) {
+            return redirect()->back()->with('success', 'Post deleted !');
+        }
+        return redirect()->back()->with('fail', 'Failed to delete');
+    }
+
+
     public
     function getsetting()
     {
@@ -219,6 +228,12 @@ class UserController extends Controller
             return response(['status' => true]);
         }
         return response(['status' => false]);
+    }
+
+    public function commentDelete($id)
+    {
+        Comment::find($id)->delete();
+        return redirect()->back();
     }
 
 }

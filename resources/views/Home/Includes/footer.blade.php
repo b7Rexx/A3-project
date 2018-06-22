@@ -1,5 +1,5 @@
-<button onclick="topFunction()" id="myBtn" title="Back to top"><i class="fa fa-arrow-up"></i></button>
 <div class="footer-links">
+    <button onclick="topFunction()" id="myBtn" title="Back to top"><i class="fa fa-chevron-down"></i></button>
     <div class="row p-4">
         <div class="col-md-4 col-sm-6 text-center">
             <a href="{{route('home')}}"><img src="{{URL::to('images/A3logo.png')}}" height="100px" alt="icon"></a>

@@ -81,6 +81,7 @@ var cart = new Vue({
     data: {
         cartListData: '',
         cartCountData: '',
+        cartEmpty: '',
         token: server._token
     },
     methods: {
@@ -94,7 +95,13 @@ var cart = new Vue({
             // console.log();
             axios.post(server._url + '/api/store/cart', cartData).then(function (response) {
                 if (response.data.status === true) {
-                    alert('item added to cart');
+
+                    var appendDiv = '<div class="rate-message alert alert-success"> <i class="fa fa-shopping-cart fa-2x"></i> Item Added to Cart!</div>';
+                    $('.bg-content').append(appendDiv);
+                    setTimeout(function () {
+                        $('.rate-message').remove();
+                    }, 3000);
+
                     _this.cartCount();
                 } else {
                     console.log(response);
@@ -106,8 +113,26 @@ var cart = new Vue({
             var _this2 = this;
 
             axios.get(server._url + '/api/get/cartItem').then(function (response) {
-                _this2.cartCountData = response.data.length;
-                _this2.cartListData = response.data;
+
+                if (response.data.status === false) {
+                    _this2.cartCountData = '';
+                    _this2.cartListData = '';
+                    _this2.cartEmpty = true;
+                } else {
+                    _this2.cartCountData = response.data.length;
+                    _this2.cartListData = response.data;
+                    _this2.cartEmpty = false;
+                }
+            });
+        },
+        removeCartItem: function removeCartItem(value) {
+            var _this3 = this;
+
+            axios.get(server._url + '/api/remove/cartItem/' + value).then(function (response) {
+                _this3.cartCount();
+                // console.log(value);
+                // console.log(this.cartListData);
+                // console.log(response);
             });
         }
     },

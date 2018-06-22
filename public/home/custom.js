@@ -17,7 +17,9 @@ $(function () {
 
 
 //scroll to top
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function () {
+    scrollFunction()
+};
 
 function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -78,11 +80,11 @@ $(document).ready(function () {
                 data: {_token: server._token, id: id, value: value},
                 success: function (response) {
                     console.log(response);
-                    var appendDiv = '<div class="rate-message alert alert-success"style="position: fixed;top:150px;left:150px"> <i class="fa fa-check"></i> Rating submitted! re-calibration in process !</div>';
+                    var appendDiv = '<div class="rate-message alert alert-success"> <i class="fa fa-check"></i> Rating submitted! re-calibration in process !</div>';
                     $('.bg-content').append(appendDiv);
                     setTimeout(function () {
                         $('.rate-message').remove();
-                    }, 3000)
+                    }, 5000)
                 },
                 error: function () {
                     alert('Login required');
@@ -132,7 +134,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#no-image-video-button').on('click',function (e) {
+    $('#no-image-video-button').on('click', function (e) {
         e.preventDefault();
         $('#post-image').remove();
         $('#post-video').remove();
@@ -174,7 +176,7 @@ $(document).ready(function () {
     });
 
     if (window.location.hash.substr(1) != '') {
-        commentId =window.location.hash.substr(1);
+        commentId = window.location.hash.substr(1);
         window.location.hash = '';
         $('.comment-all').hide();
         $('.comment-' + commentId).show();
@@ -185,5 +187,23 @@ $(document).ready(function () {
     //     console.log('load comment' + id);
     // }
 
-})
-;
+    $('.post-delete').on('click', function () {
+        var value = $(this).attr('post_id');
+        if (confirm('Are you sure you want to delete this post ? ')) {
+            console.log(value);
+            window.location.replace(server._url + '/user/post/delete/' + value);
+        }
+    });
+
+
+    //CART TABLE CALCULATE
+    $('.comment-delete').on('click', function () {
+        var value = $(this).attr('comment_id');
+        if (confirm('Are you sure you want to delete this comment ? ')) {
+            console.log(value);
+            window.location.replace(server._url + '/user/comment/delete/' + value);
+        }
+    });
+
+
+});
